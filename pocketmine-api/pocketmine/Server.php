@@ -41,6 +41,7 @@ class Server{
   public function getOnlineMode() : bool{
     //no defined
 		return $this->onlineMode;
+  }
   public function requiresAuthentication() : bool{
 		return $this->getOnlineMode();
   }

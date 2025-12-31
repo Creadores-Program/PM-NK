@@ -1,0 +1,7 @@
+main: org.CreadoresProgram.PMNK.Main
+name: PMNK
+author: "Creadores Program"
+description: ""
+version: "0.1.0-PM-3.23.1"
+api: ["1.0.0"]
+load: STARTUP
