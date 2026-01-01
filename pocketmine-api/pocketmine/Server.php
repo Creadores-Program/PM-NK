@@ -59,7 +59,10 @@ class Server{
     return self::$instanceNK->getIp();
   }
   public function getServerUniqueId(){
-    //UUID::fromString(self::$instanceNK->getServerUniqueId(), /*$version*/);
+    //UUID::fromString(self::$instanceNK->getServerUniqueId()->toString(), /*$version*/);
     return $this->serverID;
+  }
+  public function getAutoSave() : bool{
+	  return self::$instanceNK->getAutoSave();
   }
 }
