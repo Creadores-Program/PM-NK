@@ -2,6 +2,8 @@
 namespace pocketmine;
 use cn\nukkit\Server as ServerNK;
 use Ramsey\Uuid\UuidInterface;
+use function max;
+use function min;
 class Server{
   public const BROADCAST_CHANNEL_ADMINISTRATIVE = ServerNK::BROADCAST_CHANNEL_ADMINISTRATIVE;
   public const BROADCAST_CHANNEL_USERS = ServerNK::BROADCAST_CHANNEL_USERS;
@@ -26,7 +28,6 @@ class Server{
 		return \pocketmine\PATH;
   }
   public function getResourcePath() : string{
-    //No defined
 		return \pocketmine\RESOURCE_PATH;
   }
   public function getDataPath() : string{
@@ -39,8 +40,7 @@ class Server{
 		return $this->instanceNK->getMaxPlayers();
   }
   public function getOnlineMode() : bool{
-    //no defined
-		return $this->onlineMode;
+		return $this->instanceNK->getPropertyBoolean("xbox-auth", true);
   }
   public function requiresAuthentication() : bool{
 		return $this->getOnlineMode();
