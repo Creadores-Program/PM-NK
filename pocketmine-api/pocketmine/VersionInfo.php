@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace pocketmine;
 use cn\nukkit\Nukkit;
 use pocketmine\Server;
@@ -26,4 +28,5 @@ if($git_info != null){
 define('pocketmine\DATA', Nukkit::DATA_PATH);
 define('pocketmine\PLUGIN_PATH', Nukkit::PLUGIN_PATH . DIRECTORY_SEPARATOR);
 define('pocketmine\START_TIME', Nukkit::START_TIME);
+define('pocketmine\RESOURCE_PATH', Nukkit::DATA_PATH . "resource_packs");
 new Server();
