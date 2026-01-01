@@ -10,6 +10,7 @@ class Server{
   private static $instance = null;
   private static $instanceNK = ServerNK::getInstance();
   private $serverID;
+  private $logger;
   public function getName() : string{
 		return \pocketmine\NAME . "-" . self::$instanceNK->getName();
   }
@@ -64,5 +65,39 @@ class Server{
   }
   public function getAutoSave() : bool{
 	  return self::$instanceNK->getAutoSave();
+  }
+  public function setAutoSave(bool $value){
+    self::$instanceNK->setAutoSave($value);
+  }
+  public function getLevelType() : string{
+    return self::$instanceNK->getLevelType();
+  }
+  public function getGenerateStructures() : bool{
+    if(self::$instanceNK->getPluginManager->getPlugin("WorldGeneratorExtension") != null){
+      return true;
+    }
+    return false;
+  }
+  public function getGamemode() : int{
+    return self::$instanceNK->getGamemode();
+  }
+  public function getForceGamemode() : bool{
+    return self::$instanceNK->getForceGamemode();
+  }
+  public static function getGamemodeString(int $mode) : string{
+    return self::$instanceNK->getGamemodeString($mode);
+  }
+  public static function getGamemodeName(int $mode) : string{
+    $gameName = self::$instanceNK->getGamemodeString($mode, true);
+    if($gameName == "UNKNOWN"){
+      throw new \InvalidArgumentException("Invalid gamemode $mode");
+    }
+    return $gameName;
+  }
+  public static function getGamemodeFromString(string $str) : int{
+    return self::$instanceNK->getGamemodeFromString($str);
+  }
+  public function getDifficulty() : int{
+    return self::$instanceNK->getDifficulty();
   }
 }

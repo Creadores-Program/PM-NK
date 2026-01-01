@@ -13,14 +13,22 @@ import php.runtime.env.Environment;
 import php.runtime.env.Context;
 import php.runtime.launcher.Launcher;
 import php.runtime.reflection.ModuleEntity;
+import php.runtime.ClassEntity;
+import php.runtime.Memory;
+import php.runtime.memory.ObjectMemory;
 import org.CreadoresProgram.PMNK.Main;
 public class PMPluginLoader implements PluginLoader{
   private Main plugin;
   private Server server;
+  private CompileScope scope;
+  private Environment env;
   private static final Pattern[] FILTERS = new Pattern[]{Pattern.compile("^.+\\.phar$")};
   public PMPluginLoader(Server server){
     this.server = server;
     this.plugin = Main.getInstance();
+    this.scope = new CompileScope();
+    this.scope.setClassLoader(plugin.getClass().getClassLoader());
+    this.env = new Environment(scope);
   }
   @Override
   public Plugin loadPlugin(String filename) throws Exception {
@@ -60,5 +68,21 @@ public class PMPluginLoader implements PluginLoader{
         this.server.getPluginManager().callEvent(new PluginDisableEvent(plugin));
         ((PluginBase) plugin).setEnabled(false);
     }
+  }
+  private void eval(String code){
+    try{
+      Context context = new Context(code);
+      ModuleEntity module = scope.loadModule(context);
+      env.registerModule(module);
+      module.include(env);
+    }catch(Throwable e){
+      plugin.getLogger().error("Error in php code.", e);
+    }
+  }
+  private ClassEntity getClassPhp(String name){
+    return env.fetchClass(name);
+  }
+  public Environment getEnv(){
+    return env;
   }
 }
