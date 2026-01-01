@@ -5,6 +5,7 @@ namespace pocketmine;
 use cn\nukkit\Nukkit;
 use pocketmine\Server;
 use function define;
+use const DIRECTORY_SEPARATOR;
 
 const _VERSION_INFO_INCLUDED = true;
 const BASE_VERSION = "3.23.1";
@@ -29,5 +30,5 @@ if($git_info != null){
 define('pocketmine\DATA', Nukkit::DATA_PATH);
 define('pocketmine\PLUGIN_PATH', Nukkit::PLUGIN_PATH . DIRECTORY_SEPARATOR);
 define('pocketmine\START_TIME', Nukkit::START_TIME);
-define('pocketmine\RESOURCE_PATH', Nukkit::DATA_PATH . "resource_packs");
+define('pocketmine\RESOURCE_PATH', Nukkit::DATA_PATH . "resource_packs" . DIRECTORY_SEPARATOR);
 new Server();
