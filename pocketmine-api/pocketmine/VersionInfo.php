@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace pocketmine;
 use cn\nukkit\Nukkit;
 use pocketmine\Server;
+use function define;
 
 const _VERSION_INFO_INCLUDED = true;
 const BASE_VERSION = "3.23.1";
