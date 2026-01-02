@@ -22,6 +22,9 @@ public class PharManager{
                     buffer.write(data, 0, dread);
                 }
                 dirP.put(entry.getName(), buffer.toByteArray());
+            }catch(Throwable e){
+                e.printStackTrace();
+                return null;
             }
         }
         return dirP;
