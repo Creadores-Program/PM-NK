@@ -6,11 +6,10 @@ use function max;
 use function min;
 use function define;
 $serverNK = new JavaClass("cn.nukkit.Server");
-define("BROADCAST_CHANNEL_ADMINISTRATIVENK", $serverNK->getDeclaredField("BROADCAST_CHANNEL_ADMINISTRATIVE")->get(null));
-define("BROADCAST_CHANNEL_USERSNK", $serverNK->getDeclaredField("BROADCAST_CHANNEL_USERS")->get(null));
+//$serverNK->getDeclaredField("BROADCAST_CHANNEL_ADMINISTRATIVE")->get(null);
 class Server{
-  public const BROADCAST_CHANNEL_ADMINISTRATIVE = BROADCAST_CHANNEL_ADMINISTRATIVENK;
-  public const BROADCAST_CHANNEL_USERS = BROADCAST_CHANNEL_USERSNK;
+  public const BROADCAST_CHANNEL_ADMINISTRATIVE = "nukkit.broadcast.admin";
+  public const BROADCAST_CHANNEL_USERS = "nukkit.broadcast.user";
   private static $instance = null;
   public static $instanceNK;
   private $serverID;
