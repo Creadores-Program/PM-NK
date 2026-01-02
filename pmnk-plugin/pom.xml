@@ -65,7 +65,7 @@
                             <goal>unpack-dependencies</goal>
                         </goals>
                         <configuration>
-                            <includeGroupIds>name.npetrovski.jphar, org.develnext</includeGroupIds>
+                            <includeGroupIds>name.npetrovski.jphar, com.github.jphp-group.jphp</includeGroupIds>
                             <outputDirectory>${project.build.directory}/classes</outputDirectory>
                         </configuration>
                     </execution>
