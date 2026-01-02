@@ -26,7 +26,9 @@ jobs:
           java-version: 8
           distribution: 'temurin'
       - name: Build with Maven
-        run: mvn -B package --file pmnk-plugin/pom.xml
+        run: |
+          mvn install:install-file -Dfile=pmnk-plugin/libs/jphar-2.0.1.jar -DgroupId=name.npetrovski.jphar -DartifactId=jphar -Dversion=2.1.0-SNAPSHOT -Dpackaging=jar -DgeneratePom=true
+          mvn -B package --file pmnk-plugin/pom.xml
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
