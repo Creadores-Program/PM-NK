@@ -2,6 +2,7 @@
 namespace pocketmine;
 use php\lang\JavaClass;
 use pocketmine\utils\UUID;
+use pocketmine\utils\MainLogger;
 use function max;
 use function min;
 use function define;
@@ -63,7 +64,6 @@ class Server{
     return self::$instanceNK->getIp();
   }
   public function getServerUniqueId(){
-    //UUID::fromString(self::$instanceNK->getServerUniqueId()->toString(), /*$version*/);
     return $this->serverID;
   }
   public function getAutoSave() : bool{
@@ -102,6 +102,11 @@ class Server{
   }
   public function getDifficulty() : int{
     return self::$instanceNK->getDifficulty();
+  }
+  public function __construct(){
+	  self::$instance = $this;
+	  $this->serverID = UUID::fromString(self::$instanceNK->getServerUniqueId()->toString());
+	  $this->logger = new MainLogger(self::$instanceNK->getLogger());
   }
 }
 Server::$instanceNK = $serverNK->getDeclaredMethod("getInstance", [])->invoke(null);
