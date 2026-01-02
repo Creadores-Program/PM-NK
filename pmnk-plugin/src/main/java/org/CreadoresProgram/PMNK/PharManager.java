@@ -1,15 +1,16 @@
 package org.CreadoresProgram.PNK;
 import name.npetrovski.jphar.Phar;
-import name.npetrovski.jphar.DataEntry;
+import name.npetrovski.jphar.Entry;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 public class PharManager{
     public static Map<String, byte[]> readPhar(File file){
         Map<String, byte[]> dirP = new HashMap<>();
         Phar phar = new Phar(file);
-        for(DataEntry entry : phar.getEntries()){
+        for(Entry entry : phar.getEntries()){
             if(entry.isDirectory()){
                 continue;
             }

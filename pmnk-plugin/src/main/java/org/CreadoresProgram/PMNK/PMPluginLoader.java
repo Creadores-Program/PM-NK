@@ -13,7 +13,7 @@ import php.runtime.env.Environment;
 import php.runtime.env.Context;
 import php.runtime.launcher.Launcher;
 import php.runtime.reflection.ModuleEntity;
-import php.runtime.ClassEntity;
+import php.runtime.reflection.ClassEntity;
 import php.runtime.Memory;
 import php.runtime.memory.ObjectMemory;
 import org.CreadoresProgram.PMNK.Main;
