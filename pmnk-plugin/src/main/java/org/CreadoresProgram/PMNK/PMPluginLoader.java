@@ -10,7 +10,6 @@ import java.util.*;
 import java.util.regex.Pattern;
 import php.runtime.env.CompileScope;
 import php.runtime.env.Environment;
-import php.runtime.env.Context;
 import php.runtime.launcher.Launcher;
 import php.runtime.reflection.ModuleEntity;
 import php.runtime.reflection.ClassEntity;
@@ -27,7 +26,7 @@ public class PMPluginLoader implements PluginLoader{
     this.server = server;
     this.plugin = Main.getInstance();
     this.scope = new CompileScope();
-    this.scope.setClassLoader(plugin.getClass().getClassLoader());
+    this.scope.setNativeClassLoader(plugin.getClass().getClassLoader());
     this.env = new Environment(scope);
   }
   @Override
@@ -71,8 +70,7 @@ public class PMPluginLoader implements PluginLoader{
   }
   private void eval(String code){
     try{
-      Context context = new Context(code);
-      ModuleEntity module = scope.loadModule(context);
+      ModuleEntity module = scope.loadModule(code);
       env.registerModule(module);
       module.include(env);
     }catch(Throwable e){
