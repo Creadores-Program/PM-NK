@@ -17,6 +17,7 @@ import php.runtime.reflection.ClassEntity;
 import php.runtime.Memory;
 import php.runtime.memory.ObjectMemory;
 import org.CreadoresProgram.PMNK.Main;
+import org.CreadoresProgram.PMNK.PharManager;
 public class PMPluginLoader implements PluginLoader{
   private Main plugin;
   private Server server;
