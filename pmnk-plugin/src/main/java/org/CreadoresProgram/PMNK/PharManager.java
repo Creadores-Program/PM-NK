@@ -1,4 +1,4 @@
-package org.CreadoresProgram.PNK;
+package org.CreadoresProgram.PMNK;
 import name.npetrovski.jphar.Phar;
 import name.npetrovski.jphar.Entry;
 import java.util.HashMap;
