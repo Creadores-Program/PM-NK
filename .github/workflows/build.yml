@@ -13,7 +13,9 @@ jobs:
         run: php -d phar.readonly=0 build.php
         working-directory: ./pocketmine-api
       - name: PocketMine to Nukkit
-        run: mv pocketmine-api/PocketMine-MP.phar pmnk-plugin/src/main/resources/
+        run: |
+          mkdir pmnk-plugin/src/main/resources/pocketmine-api/
+          mv pocketmine-api/PocketMine-MP.phar pmnk-plugin/src/main/resources/pocketmine-api/
   pluginBuild:
     runs-on: ubuntu-latest
     needs: pocketmineBuild

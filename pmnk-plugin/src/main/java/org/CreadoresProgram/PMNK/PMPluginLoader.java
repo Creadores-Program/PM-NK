@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.*;
+import java.util.Map;
 import java.util.regex.Pattern;
 import php.runtime.env.CompileScope;
 import php.runtime.env.Environment;
@@ -28,6 +29,20 @@ public class PMPluginLoader implements PluginLoader{
     this.scope = new CompileScope();
     this.scope.setNativeClassLoader(plugin.getClass().getClassLoader());
     this.env = new Environment(scope);
+    this.loadPMAPI();
+  }
+  private void loadPMAPI(){
+    this.plugin.saveResource("pocketmine-api/PocketMine-MP.phar");
+    File pocketmineF = new File(plugin.getDataFolder() + "/pocketmine-api/PocketMine-MP.phar");
+    Map<String, byte[]> pmDir = PharManager.readPhar(pocketmineF);
+    for (Map.Entry<String, byte[]> entry : pmDir.entrySet()) {
+      String fileName = entry.getKey();
+      if(fileName == "pocketmine/VersionInfo.php"){
+        continue;
+      }
+      this.eval(new String(entry.getValue()));
+    }
+    this.eval(pmDir.get("pocketmine/VersionInfo.php"));
   }
   @Override
   public Plugin loadPlugin(String filename) throws Exception {
