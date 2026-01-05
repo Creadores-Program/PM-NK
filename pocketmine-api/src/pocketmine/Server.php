@@ -103,6 +103,12 @@ class Server{
   public function getDifficulty() : int{
     return self::$instanceNK->getDifficulty();
   }
+  public function getLogger(){
+    return $this->logger;
+  }
+  public static function getInstance(){
+    return self::$instance;
+  }
   public function __construct(){
 	  self::$instance = $this;
 	  $this->serverID = UUID::fromString(self::$instanceNK->getServerUniqueId()->toString());
