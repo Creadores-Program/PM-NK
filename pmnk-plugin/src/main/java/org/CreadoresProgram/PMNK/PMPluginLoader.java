@@ -44,7 +44,7 @@ public class PMPluginLoader implements PluginLoader{
       this.eval(new String(entry.getValue()));
     }
     this.eval(new String(pmDir.get("pocketmine/VersionInfo.php")));
-    this.eval("<?php\necho 'holaa';");
+    this.eval("<?php\necho 'holaa\\n';");
   }
   @Override
   public Plugin loadPlugin(String filename) throws Exception {
