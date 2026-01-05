@@ -89,6 +89,7 @@ public class PMPluginLoader implements PluginLoader{
   private void eval(String code){
     try{
       env.eval(code);
+      env.flushAll();
     }catch(Throwable e){
       plugin.getLogger().error("Error in php code.", e);
     }
