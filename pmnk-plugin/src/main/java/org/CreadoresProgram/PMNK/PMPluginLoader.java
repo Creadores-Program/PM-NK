@@ -27,9 +27,15 @@ public class PMPluginLoader implements PluginLoader{
   public PMPluginLoader(Server server){
     this.server = server;
     this.plugin = Main.getInstance();
-    this.scope = new CompileScope();
+    Launcher launcher = new Launcher();
+    try {
+        launcher.run(false);
+    } catch (Throwable e) {
+        //pass
+    }
+    this.scope = launcher.getCompileScope();
     this.scope.setNativeClassLoader(plugin.getClass().getClassLoader());
-    this.env = new Environment(scope);
+    this.env = new Environment(scope, System.out);
     this.loadPMAPI();
   }
   private void loadPMAPI(){
