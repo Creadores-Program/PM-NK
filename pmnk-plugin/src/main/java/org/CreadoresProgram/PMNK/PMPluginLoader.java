@@ -51,6 +51,8 @@ public class PMPluginLoader implements PluginLoader{
     }
     this.eval(new String(pmDir.get("pocketmine/VersionInfo.php")));
     this.eval("echo 'holaa\\n';\n");
+    this.eval("<?php return 'holaaa';\n");
+    this.eval("return 'holaa';");
     this.eval("<?php \\pocketmine\\Server->getInstance()->getLogger()->info('Hola mundo');");
   }
   @Override
@@ -94,7 +96,7 @@ public class PMPluginLoader implements PluginLoader{
   }
   private void eval(String code){
     try{
-      env.eval(code);
+      this.plugin.getLogger().info(env.eval(code).toString());
       env.getDefaultBuffer().flush();
     }catch(Throwable e){
       plugin.getLogger().error("Error in php code.", e);
