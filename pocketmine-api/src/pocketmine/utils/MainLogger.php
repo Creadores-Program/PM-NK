@@ -7,10 +7,11 @@ class MainLogger{
   private $loggerNK;
   public static $logger;
   public static $serverNK;
-  private $format = TextFormat::AQUA . "[%s] " . TextFormat::RESET . "%s[%s/%s]: %s" . TextFormat::RESET;
+  private $format;
   public function __construct($loggerNK){
     $this->loggerNK = $loggerNK;
     static::$logger = $this;
+    $this->format = TextFormat::AQUA . "[%s] " . TextFormat::RESET . "%s[%s/%s]: %s" . TextFormat::RESET;
   }
   public static function getLogger() : MainLogger{
 		return static::$logger;

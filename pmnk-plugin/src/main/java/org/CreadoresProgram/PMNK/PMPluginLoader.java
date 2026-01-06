@@ -48,9 +48,9 @@ public class PMPluginLoader implements PluginLoader{
       if(fileName.equals("pocketmine/VersionInfo.php")){
         continue;
       }
-      this.eval(new String(entry.getValue(), StandardCharsets.UTF_8), pmDir);
+      this.eval(new String(entry.getValue(), StandardCharsets.UTF_8), fileName);
     }
-    this.eval(new String(pmDir.get("pocketmine/VersionInfo.php"), StandardCharsets.UTF_8), pmDir);
+    this.eval(new String(pmDir.get("pocketmine/VersionInfo.php"), StandardCharsets.UTF_8), "pocketmine/VersionInfo.php");
     this.eval("<?php echo 'Hola buenas\\n';\n", "Unknown");
   }
   @Override
