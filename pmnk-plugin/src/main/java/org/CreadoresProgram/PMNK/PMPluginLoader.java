@@ -35,6 +35,7 @@ public class PMPluginLoader implements PluginLoader{
     this.scope.setNativeClassLoader(plugin.getClass().getClassLoader());
     this.scope.registerExtension(new JsonExtension());
     this.env = new Environment(scope, System.out);
+    this.plugin.getLogger().info("§eLoading §bPocketmine§e API...");
     try{
       this.loadPMAPI();
     }catch(Throwable e){
@@ -50,10 +51,10 @@ public class PMPluginLoader implements PluginLoader{
       if(fileName.equals("pocketmine/VersionInfo.php")){
         continue;
       }
-      this.eval(new String(entry.getValue(), StandardCharsets.UTF_8), fileName);
+      this.eval(entry.getValue(), fileName);
     }
-    this.eval(new String(pmDir.get("pocketmine/VersionInfo.php"), StandardCharsets.UTF_8), "pocketmine/VersionInfo.php");
-    this.eval("<?php echo 'Hola buenas\\n';\n", "Unknown");
+    this.eval(pmDir.get("pocketmine/VersionInfo.php"), "pocketmine/VersionInfo.php");
+    this.eval("<?php\necho 'Hola buenas\\n';\n", "Unknown");
   }
   @Override
   public Plugin loadPlugin(String filename) throws Exception {
@@ -94,9 +95,9 @@ public class PMPluginLoader implements PluginLoader{
         ((PluginBase) plugin).setEnabled(false);
     }
   }
-  private void eval(String code, String modulePath){
+  private void eval(byte[] code, String modulePath){
     try{
-      Context context = new Context(new ByteArrayInputStream(code.getBytes(StandardCharsets.UTF_8)), modulePath, StandardCharsets.UTF_8);
+      Context context = new Context(new ByteArrayInputStream(code), modulePath, StandardCharsets.UTF_8);
       ModuleEntity module = env.importModule(context);
       module.include(env);
       env.getDefaultBuffer().flush();
@@ -104,6 +105,9 @@ public class PMPluginLoader implements PluginLoader{
       plugin.getLogger().error("Error in php code.", e);
       e.printStackTrace();
     }
+  }
+  private void eval(String code, String modulePath){
+    this.eval(code.getBytes(StandardCharsets.UTF_8), modulePath);
   }
   private ClassEntity getClassPhp(String name){
     return env.fetchClass(name);
