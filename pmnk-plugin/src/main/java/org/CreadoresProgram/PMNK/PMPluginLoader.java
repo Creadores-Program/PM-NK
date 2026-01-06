@@ -48,10 +48,10 @@ public class PMPluginLoader implements PluginLoader{
       if(fileName.equals("pocketmine/VersionInfo.php")){
         continue;
       }
-      this.eval(new String(entry.getValue(), StandardCharsets.UTF_8));
+      this.eval(new String(entry.getValue(), StandardCharsets.UTF_8), pmDir);
     }
-    this.eval(new String(pmDir.get("pocketmine/VersionInfo.php"), StandardCharsets.UTF_8));
-    this.eval("echo 'Hola buenas\\n';\n");
+    this.eval(new String(pmDir.get("pocketmine/VersionInfo.php"), StandardCharsets.UTF_8), pmDir);
+    this.eval("<?php echo 'Hola buenas\\n';\n", "Unknown");
   }
   @Override
   public Plugin loadPlugin(String filename) throws Exception {
@@ -92,9 +92,9 @@ public class PMPluginLoader implements PluginLoader{
         ((PluginBase) plugin).setEnabled(false);
     }
   }
-  private void eval(String code){
+  private void eval(String code, String modulePath){
     try{
-      Context context = new Context(new ByteArrayInputStream(code.getBytes(StandardCharsets.UTF_8)));
+      Context context = new Context(new ByteArrayInputStream(code.getBytes(StandardCharsets.UTF_8)), modulePath, StandardCharsets.UTF_8);
       ModuleEntity module = env.importModule(context);
       module.include(env);
       env.getDefaultBuffer().flush();
