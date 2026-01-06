@@ -36,7 +36,11 @@ public class PMPluginLoader implements PluginLoader{
     this.scope = launcher.getCompileScope();
     this.scope.setNativeClassLoader(plugin.getClass().getClassLoader());
     this.env = new Environment(scope, System.out);
-    this.loadPMAPI();
+    try{
+      this.loadPMAPI();
+    }catch(Throwable e){
+      this.plugin.getLogger().error("Error to load Pocketmine API", e);
+    }
   }
   private void loadPMAPI(){
     this.plugin.saveResource("pocketmine-api/PocketMine-MP.phar");
