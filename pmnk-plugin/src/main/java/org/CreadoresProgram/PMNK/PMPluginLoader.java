@@ -48,15 +48,12 @@ public class PMPluginLoader implements PluginLoader{
     Map<String, byte[]> pmDir = PharManager.readPhar(pocketmineF);
     for (Map.Entry<String, byte[]> entry : pmDir.entrySet()) {
       String fileName = entry.getKey();
-      if(fileName == "pocketmine/VersionInfo.php"){
+      if(fileName.equals("pocketmine/VersionInfo.php")){
         continue;
       }
       this.eval(new String(entry.getValue()));
     }
     this.eval(new String(pmDir.get("pocketmine/VersionInfo.php")));
-    this.eval("echo 'holaa\\n';\n");
-    this.eval("<?php return 'holaaa';\n");
-    this.eval("return 'holaa';");
     this.eval("<?php \\pocketmine\\Server->getInstance()->getLogger()->info('Hola mundo');");
   }
   @Override
@@ -100,9 +97,7 @@ public class PMPluginLoader implements PluginLoader{
   }
   private void eval(String code){
     try{
-      this.plugin.getLogger().info("Hi");
       this.plugin.getLogger().info(env.eval(code).toString());
-      this.plugin.getLogger().info("end"+code);
       env.getDefaultBuffer().flush();
     }catch(Throwable e){
       plugin.getLogger().error("Error in php code.", e);
