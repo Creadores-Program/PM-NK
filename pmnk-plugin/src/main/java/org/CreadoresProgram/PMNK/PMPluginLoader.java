@@ -92,7 +92,10 @@ public class PMPluginLoader implements PluginLoader{
   }
   private void eval(String code){
     try{
-      env.eval(code);
+      Context context = new Context(code);
+      ModuleEntity module = scope.loadModule(context);
+      env.registerModule(module);
+      module.include(env);
       env.getDefaultBuffer().flush();
     }catch(Throwable e){
       plugin.getLogger().error("Error in php code.", e);
