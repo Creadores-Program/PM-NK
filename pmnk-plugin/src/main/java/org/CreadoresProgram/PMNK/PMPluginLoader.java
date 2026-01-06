@@ -28,13 +28,7 @@ public class PMPluginLoader implements PluginLoader{
   public PMPluginLoader(Server server){
     this.server = server;
     this.plugin = Main.getInstance();
-    Launcher launcher = new Launcher();
-    try {
-        launcher.run(false);
-    } catch (Throwable e) {
-        //pass
-    }
-    this.scope = launcher.getCompileScope();
+    this.scope = new CompileScope();
     this.scope.setNativeClassLoader(plugin.getClass().getClassLoader());
     this.env = new Environment(scope, System.out);
     try{
@@ -102,6 +96,7 @@ public class PMPluginLoader implements PluginLoader{
       env.getDefaultBuffer().flush();
     }catch(Throwable e){
       plugin.getLogger().error("Error in php code.", e);
+      e.printStackTrace();
     }
   }
   private ClassEntity getClassPhp(String name){
