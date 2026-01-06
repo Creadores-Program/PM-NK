@@ -49,7 +49,7 @@ public class PMPluginLoader implements PluginLoader{
       this.eval(new String(entry.getValue(), StandardCharsets.UTF_8));
     }
     this.eval(new String(pmDir.get("pocketmine/VersionInfo.php"), StandardCharsets.UTF_8));
-    this.eval("<?php \\pocketmine\\Server->getInstance()->getLogger()->info('Hola mundo');\n");
+    this.eval("echo 'Hola buenas\\n';\n");
   }
   @Override
   public Plugin loadPlugin(String filename) throws Exception {
