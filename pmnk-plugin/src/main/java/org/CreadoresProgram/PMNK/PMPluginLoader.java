@@ -19,6 +19,7 @@ import php.runtime.reflection.ModuleEntity;
 import php.runtime.reflection.ClassEntity;
 import php.runtime.Memory;
 import php.runtime.memory.ObjectMemory;
+import org.develnext.jphp.json.JsonExtension;
 import org.CreadoresProgram.PMNK.Main;
 import org.CreadoresProgram.PMNK.PharManager;
 public class PMPluginLoader implements PluginLoader{
@@ -32,6 +33,7 @@ public class PMPluginLoader implements PluginLoader{
     this.plugin = Main.getInstance();
     this.scope = new CompileScope();
     this.scope.setNativeClassLoader(plugin.getClass().getClassLoader());
+    this.scope.registerExtension(new JsonExtension());
     this.env = new Environment(scope, System.out);
     try{
       this.loadPMAPI();
