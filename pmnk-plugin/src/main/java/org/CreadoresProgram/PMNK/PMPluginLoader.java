@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 import java.nio.charset.StandardCharsets;
 import php.runtime.env.CompileScope;
 import php.runtime.env.Environment;
+import php.runtime.env.Context;
 import php.runtime.launcher.Launcher;
 import php.runtime.reflection.ModuleEntity;
 import php.runtime.reflection.ClassEntity;
