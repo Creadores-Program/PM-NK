@@ -5,6 +5,7 @@ import cn.nukkit.event.plugin.PluginEnableEvent;
 import cn.nukkit.plugin.*;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.*;
 import java.io.InputStream;
 import java.util.*;
 import java.util.Map;
@@ -93,8 +94,8 @@ public class PMPluginLoader implements PluginLoader{
   }
   private void eval(String code){
     try{
-      Context context = new Context(code);
-      ModuleEntity module = scope.loadModule(context);
+      Context context = new Context(new ReaderInputStream(new StringReader(code)));
+      ModuleEntity module = scope.importModule(context);
       env.registerModule(module);
       module.include(env);
       env.getDefaultBuffer().flush();
