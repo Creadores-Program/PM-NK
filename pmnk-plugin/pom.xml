@@ -70,7 +70,7 @@
                             <goal>unpack-dependencies</goal>
                         </goals>
                         <configuration>
-                            <includeGroupIds>name.npetrovski.jphar, org.apache.commons, com.github.jphp-group.jphp</includeGroupIds>
+                            <includeGroupIds>name.npetrovski.jphar, org.apache.commons, com.github.jphp-group.jphp, org.ow2.asm</includeGroupIds>
                             <outputDirectory>${project.build.directory}/classes</outputDirectory>
                         </configuration>
                     </execution>
