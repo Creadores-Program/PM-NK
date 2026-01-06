@@ -94,8 +94,8 @@ public class PMPluginLoader implements PluginLoader{
   }
   private void eval(String code){
     try{
-      Context context = new Context(new ReaderInputStream(new StringReader(code)));
-      ModuleEntity module = scope.importModule(context);
+      Context context = new Context(new ByteArrayInputStream(code.getBytes(StandardCharsets.UTF_8)));
+      ModuleEntity module = env.importModule(context);
       env.registerModule(module);
       module.include(env);
       env.getDefaultBuffer().flush();
