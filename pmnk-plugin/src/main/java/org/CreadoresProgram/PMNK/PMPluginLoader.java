@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.util.*;
 import java.util.Map;
 import java.util.regex.Pattern;
+import java.nio.charset.StandardCharsets;
 import php.runtime.env.CompileScope;
 import php.runtime.env.Environment;
 import php.runtime.launcher.Launcher;
@@ -51,9 +52,9 @@ public class PMPluginLoader implements PluginLoader{
       if(fileName.equals("pocketmine/VersionInfo.php")){
         continue;
       }
-      this.eval(new String(entry.getValue()));
+      this.eval(new String(entry.getValue(), StandardCharsets.UTF_8));
     }
-    this.eval(new String(pmDir.get("pocketmine/VersionInfo.php")));
+    this.eval(new String(pmDir.get("pocketmine/VersionInfo.php"), StandardCharsets.UTF_8));
     this.eval("<?php \\pocketmine\\Server->getInstance()->getLogger()->info('Hola mundo');\n");
   }
   @Override
