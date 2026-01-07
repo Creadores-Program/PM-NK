@@ -99,37 +99,37 @@ public class PMPluginLoader implements PluginLoader{
       return null;
     }
     pluginYmlNk.put("main", main);
-    if(pluginYmlPm.constainsKey("commands")){
+    if(pluginYmlPm.containsKey("commands")){
       pluginYmlNk.put("commands", pluginYmlPm.get("commands"));
     }
-    if(pluginYmlPm.constainsKey("depend")){
+    if(pluginYmlPm.containsKey("depend")){
       pluginYmlNk.put("depend", pluginYmlPm.get("depend"));
     }
-    if(pluginYmlPm.constainsKey("softdepend")){
+    if(pluginYmlPm.containsKey("softdepend")){
       pluginYmlNk.put("softdepend", pluginYmlPm.get("softdepend"));
     }
-    if(pluginYmlPm.constainsKey("loadbefore")){
+    if(pluginYmlPm.containsKey("loadbefore")){
       pluginYmlNk.put("loadbefore", pluginYmlPm.get("loadbefore"));
     }
-    if(pluginYmlPm.constainsKey("website")){
+    if(pluginYmlPm.containsKey("website")){
       pluginYmlNk.put("website", pluginYmlPm.get("website"));
     }
-    if(pluginYmlPm.constainsKey("description")){
+    if(pluginYmlPm.containsKey("description")){
       pluginYmlNk.put("description", pluginYmlPm.get("description"));
     }
-    if(pluginYmlPm.constainsKey("prefix")){
+    if(pluginYmlPm.containsKey("prefix")){
       pluginYmlNk.put("prefix", pluginYmlPm.get("prefix"));
     }
-    if(pluginYmlPm.constainsKey("load")){
+    if(pluginYmlPm.containsKey("load")){
       pluginYmlNk.put("load", pluginYmlPm.get("load"));
     }
-    if(pluginYmlPm.constainsKey("author")){
+    if(pluginYmlPm.containsKey("author")){
       pluginYmlNk.put("author", pluginYmlPm.get("author"));
     }
-    if(pluginYmlPm.constainsKey("authors")){
+    if(pluginYmlPm.containsKey("authors")){
       pluginYmlNk.put("authors", pluginYmlPm.get("authors"));
     }
-    if(pluginYmlPm.constainsKey("permissions")){
+    if(pluginYmlPm.containsKey("permissions")){
       pluginYmlNk.put("permissions", pluginYmlPm.get("permissions"));
     }
     return new PluginDescription(pluginYmlNk);
@@ -193,7 +193,7 @@ public class PMPluginLoader implements PluginLoader{
         this.server.getServiceManager().cancel(plugin);
         this.server.getPluginManager().callEvent(new PluginDisableEvent(plugin));
         ((PluginBase) plugin).setEnabled(false);
-        this.pluginsPM.remove(((PluginBase) plugin.getFile()).getAbsolutePath());
+        this.pluginsPM.remove(((PluginBase) plugin).getFile().getAbsolutePath());
     }
   }
   private void eval(byte[] code, String modulePath){
