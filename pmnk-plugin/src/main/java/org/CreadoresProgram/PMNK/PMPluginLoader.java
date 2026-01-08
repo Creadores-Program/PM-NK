@@ -41,6 +41,7 @@ public class PMPluginLoader implements PluginLoader{
     this.scope = new CompileScope();
     this.scope.setNativeClassLoader(plugin.getClass().getClassLoader());
     this.scope.registerExtension(new JsonExtension());
+    this.scope.registerExtension(new NukkitExtension());
     this.env = new Environment(scope, System.out);
     this.plugin.getLogger().info("§eLoading §bPocketmine§e API...");
     try{
