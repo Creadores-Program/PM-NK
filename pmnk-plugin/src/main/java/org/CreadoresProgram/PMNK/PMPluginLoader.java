@@ -61,7 +61,9 @@ public class PMPluginLoader implements PluginLoader{
       this.eval(entry.getValue(), fileName);
     }
     this.eval(pmDir.get("pocketmine/VersionInfo.php"), "pocketmine/VersionInfo.php");
-    this.eval("<?php\n\\pocketmine\\Server::getInstance()->getLogger()->info('Hola mundoo');\n", "Unknown");
+    this.eval("<?php\nuse \\cn\\nukkit\\Server;\nServer::getInstance()->getLogger()->info('Hola Mundo!');", "Unknown1.php");
+    this.eval("<?php\nuse \\php\\lang\\JavaClass;\n$serverNk = new JavaClass('cn.nukkit.Server');\n$serverNk->getInstance()->getLogger()->info('Hola mundo!');", "Unknown2.php");
+    this.eval("<?php\n\\pocketmine\\Server::getInstance()->getLogger()->info('Hola mundoo');", "Unknown.php");
   }
   @Override
   public Plugin loadPlugin(String filename) throws Exception {
