@@ -10,7 +10,7 @@ class Server{
   public const BROADCAST_CHANNEL_ADMINISTRATIVE = ServerNK::BROADCAST_CHANNEL_ADMINISTRATIVE;
   public const BROADCAST_CHANNEL_USERS = ServerNK::BROADCAST_CHANNEL_USERS;
   private static $instance = null;
-  private static $instanceNK = ServerNK::getInstance();
+  private static $instanceNK;
   private $serverID;
   private $logger;
   public function getName() : string{
@@ -109,6 +109,7 @@ class Server{
   }
   public function __construct(){
 	  self::$instance = $this;
+	  self::$instanceNK = ServerNK::getInstance();
 	  $this->serverID = UUID::fromString(self::$instanceNK->getServerUniqueId()->toString());
 	  $this->logger = new MainLogger(self::$instanceNK->getLogger());
   }
