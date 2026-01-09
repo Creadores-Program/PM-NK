@@ -25,6 +25,7 @@ import php.runtime.reflection.ClassEntity;
 import php.runtime.Memory;
 import php.runtime.memory.ObjectMemory;
 import org.develnext.jphp.json.JsonExtension;
+import org.venity.javareflection.JavaReflectionExtension;
 import org.CreadoresProgram.PMNK.Main;
 import org.CreadoresProgram.PMNK.PharManager;
 public class PMPluginLoader implements PluginLoader{
@@ -41,7 +42,7 @@ public class PMPluginLoader implements PluginLoader{
     this.scope = new CompileScope();
     this.scope.setNativeClassLoader(plugin.getClass().getClassLoader());
     this.scope.registerExtension(new JsonExtension());
-    this.scope.registerExtension(new NukkitExtension());
+    this.scope.registerExtension(new JavaReflectionExtension());
     this.env = new Environment(scope, System.out);
     this.plugin.getLogger().info("§eLoading §bPocketmine§e API...");
     try{
