@@ -1,12 +1,13 @@
 <?php
 declare(strict_types=1);
 namespace pocketmine\utils;
-use php\lang\JavaClass;
+use MainLogger as MainLoggerNK;
+use Server as ServerNK;
 use LogLevel;
 class MainLogger{
   private $loggerNK;
   public static $logger;
-  public static $serverNK;
+  private static $serverNK = ServerNK::getInstance();
   private $format;
   public function __construct($loggerNK){
     $this->loggerNK = $loggerNK;
@@ -86,5 +87,3 @@ class MainLogger{
   public function syncFlushBuffer(){}
   public function run(){}
 }
-$serverNK = new JavaClass("cn.nukkit.Server");
-MainLogger::$serverNK = $serverNK->getDeclaredMethod("getInstance", [])->invoke(null);
