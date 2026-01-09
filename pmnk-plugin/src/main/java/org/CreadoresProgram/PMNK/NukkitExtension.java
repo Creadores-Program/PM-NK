@@ -6,10 +6,10 @@ import cn.nukkit.Nukkit;
 public class NukkitExtension extends Extension{
   @Override
   public Status getStatus() {
-      return Status.STABLE;
+    return Status.STABLE;
   }
   @Override
   public void onRegister(CompileScope scope) {
-      registerClass(scope, Server.class, Nukkit.class);
+    registerClass(scope, Server.class, Nukkit.class);
   }
 }
