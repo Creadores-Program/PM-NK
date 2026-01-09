@@ -54,22 +54,19 @@ public class PMPluginLoader implements PluginLoader{
     this.plugin.saveResource("pocketmine-api/PocketMine-MP.phar");
     File pocketmineF = new File(plugin.getDataFolder() + "/pocketmine-api/PocketMine-MP.phar");
     Map<String, byte[]> pmDir = PharManager.readPhar(pocketmineF);
+    this.plugin.getLogger().debug("§eLoading pocketmine/Pocketmine.php...");
     this.eval(pmDir.get("pocketmine/Pocketmine.php"), "pocketmine/Pocketmine.php");
     for (Map.Entry<String, byte[]> entry : pmDir.entrySet()) {
       String fileName = entry.getKey();
       if(fileName.equals("pocketmine/VersionInfo.php") || fileName.equals("pocketmine/Pocketmine.php")){
         continue;
       }
-      this.plugin.getLogger().info("Loading "+fileName);
+      this.plugin.getLogger().debug("§eLoading "+fileName+"...");
       this.eval(entry.getValue(), fileName);
     }
-    this.plugin.getLogger().info("Loading VersionInfo");
+    this.plugin.getLogger().debug("§eLoading pocketmine/VersionInfo.php...");
     this.eval(pmDir.get("pocketmine/VersionInfo.php"), "pocketmine/VersionInfo.php");
-    this.eval("<?php\n\\Server::getInstance()->getLogger()->info('holasss');", "Unknown1.php");
-    this.eval("<?php\nServer::getInstance()->getLogger()->info('holasss');", "Unknown2.php");
-    this.eval("<?php\nuse Server;\nServer::getInstance()->getLogger()->info('holasss');", "Unknown3.php");
-    //this.eval("<?php\nuse php\\lang\\JavaClass;\n$serverNk = new JavaClass('cn.nukkit.Server');\n$serverNk->getInstance()->getLogger()->info('Hola mundo!');", "Unknown2.php");
-    //this.eval("<?php\n\\pocketmine\\Server::getInstance()->getLogger()->info('Hola mundoo');", "Unknown.php");
+    this.eval("<?php\n\\pocketmine\\Server::getInstance()->getLogger()->info('Hola mundoo');", "Unknown.php");
   }
   @Override
   public Plugin loadPlugin(String filename) throws Exception {
