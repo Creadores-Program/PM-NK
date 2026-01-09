@@ -6,7 +6,6 @@ use pocketmine\utils\MainLogger;
 use function max;
 use function min;
 use function define;
-//$serverNK->getDeclaredField("BROADCAST_CHANNEL_ADMINISTRATIVE")->get(null);
 class Server{
   public const BROADCAST_CHANNEL_ADMINISTRATIVE = ServerNK::BROADCAST_CHANNEL_ADMINISTRATIVE;
   public const BROADCAST_CHANNEL_USERS = ServerNK::BROADCAST_CHANNEL_USERS;
