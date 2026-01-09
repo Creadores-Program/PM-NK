@@ -3,6 +3,7 @@ import php.runtime.ext.support.Extension;
 import php.runtime.env.CompileScope;
 import cn.nukkit.Server;
 import cn.nukkit.Nukkit;
+import cn.nukkit.utils.MainLogger;
 public class NukkitExtension extends Extension{
   @Override
   public Status getStatus() {
@@ -10,6 +11,6 @@ public class NukkitExtension extends Extension{
   }
   @Override
   public void onRegister(CompileScope scope) {
-    registerClass(scope, Server.class, Nukkit.class);
+    registerClass(scope, Server.class, Nukkit.class, MainLogger.class);
   }
 }
