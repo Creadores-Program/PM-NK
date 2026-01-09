@@ -66,6 +66,9 @@ public class PMPluginLoader implements PluginLoader{
     }
     this.plugin.getLogger().debug("§eLoading pocketmine/VersionInfo.php...");
     this.eval(pmDir.get("pocketmine/VersionInfo.php"), "pocketmine/VersionInfo.php");
+    if(Nukkit.GIT_INFO != null){
+      this.eval("<?php\nnamespace pocketmine;\nuse function define;\ndefine('pocketmine\\GIT_COMMIT', '"+Nukkit.GIT_INFO.getProperty("git.commit.id.abbrev")+"');", "pocketmine/VersionInfoS.php");
+    }
     this.eval("<?php\n\\pocketmine\\Server::getInstance()->getLogger()->info('Hola mundoo');", "Unknown.php");
   }
   @Override
