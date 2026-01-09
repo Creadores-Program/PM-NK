@@ -54,9 +54,10 @@ public class PMPluginLoader implements PluginLoader{
     this.plugin.saveResource("pocketmine-api/PocketMine-MP.phar");
     File pocketmineF = new File(plugin.getDataFolder() + "/pocketmine-api/PocketMine-MP.phar");
     Map<String, byte[]> pmDir = PharManager.readPhar(pocketmineF);
+    this.eval(pmDir.get("pocketmine/Pocketmine.php"), "pocketmine/Pocketmine.php");
     for (Map.Entry<String, byte[]> entry : pmDir.entrySet()) {
       String fileName = entry.getKey();
-      if(fileName.equals("pocketmine/VersionInfo.php")){
+      if(fileName.equals("pocketmine/VersionInfo.php") || fileName.equals("pocketmine/Pocketmine.php")){
         continue;
       }
       this.plugin.getLogger().info("Loading "+fileName);
