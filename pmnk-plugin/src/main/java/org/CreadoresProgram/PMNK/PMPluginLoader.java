@@ -25,7 +25,6 @@ import php.runtime.reflection.ClassEntity;
 import php.runtime.Memory;
 import php.runtime.memory.ObjectMemory;
 import org.develnext.jphp.json.JsonExtension;
-import org.venity.javareflection.JavaReflectionExtension;
 import org.CreadoresProgram.PMNK.Main;
 import org.CreadoresProgram.PMNK.PharManager;
 public class PMPluginLoader implements PluginLoader{
@@ -42,7 +41,7 @@ public class PMPluginLoader implements PluginLoader{
     this.scope = new CompileScope();
     this.scope.setNativeClassLoader(plugin.getClass().getClassLoader());
     this.scope.registerExtension(new JsonExtension());
-    this.scope.registerExtension(new JavaReflectionExtension());
+    this.scope.registerExtension(new NukkitExtension());
     this.env = new Environment(scope, System.out);
     this.plugin.getLogger().info("§eLoading §bPocketmine§e API...");
     try{
@@ -66,7 +65,7 @@ public class PMPluginLoader implements PluginLoader{
     }
     this.plugin.getLogger().info("Loading VersionInfo");
     this.eval(pmDir.get("pocketmine/VersionInfo.php"), "pocketmine/VersionInfo.php");
-    this.eval("<?php\nuse java\\reflection\\ReflectionClass;\nuse java\\reflection\\ReflectionTypes;\n$servernkclazz = ReflectionClass::forName('cn.nukkit.Server');\n$servernk = $servernkclazz->getMethod('getInstance', [])->invoke(null, []);\n$loggernk = $servernkclazz->getMethod('getLogger', [])->invoke($servernk, []);\n$loggerclazz = ReflectionClass::forName('cn.nukkit.utils.MainLogger');\n$loggerclazz->getMethod('info', [ReflectionClass::forName('java.lang.String')])->invoke($loggernk, 'Hola mundooo');", "Unknown1.php");
+    this.eval("<?php\n$servernkclazz = 'cn.nukkit.Server';\n$servernkl = $servernkclazz::getInstance();\n$servernkl->getLogger()->info('holasss');", "Unknown1.php");
     //this.eval("<?php\nuse php\\lang\\JavaClass;\n$serverNk = new JavaClass('cn.nukkit.Server');\n$serverNk->getInstance()->getLogger()->info('Hola mundo!');", "Unknown2.php");
     //this.eval("<?php\n\\pocketmine\\Server::getInstance()->getLogger()->info('Hola mundoo');", "Unknown.php");
   }
