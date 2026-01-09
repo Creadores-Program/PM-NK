@@ -1,18 +1,17 @@
 <?php
 namespace pocketmine;
-use php\lang\JavaClass;
+use Server as ServerNK;
 use pocketmine\utils\UUID;
 use pocketmine\utils\MainLogger;
 use function max;
 use function min;
 use function define;
-$serverNK = new JavaClass("cn.nukkit.Server");
 //$serverNK->getDeclaredField("BROADCAST_CHANNEL_ADMINISTRATIVE")->get(null);
 class Server{
-  public const BROADCAST_CHANNEL_ADMINISTRATIVE = "nukkit.broadcast.admin";
-  public const BROADCAST_CHANNEL_USERS = "nukkit.broadcast.user";
+  public const BROADCAST_CHANNEL_ADMINISTRATIVE = ServerNK::BROADCAST_CHANNEL_ADMINISTRATIVE;
+  public const BROADCAST_CHANNEL_USERS = ServerNK::BROADCAST_CHANNEL_USERS;
   private static $instance = null;
-  public static $instanceNK;
+  private static $instanceNK = ServerNK::getInstance();
   private $serverID;
   private $logger;
   public function getName() : string{
@@ -115,4 +114,3 @@ class Server{
 	  $this->logger = new MainLogger(self::$instanceNK->getLogger());
   }
 }
-Server::$instanceNK = $serverNK->getDeclaredMethod("getInstance", [])->invoke(null);
