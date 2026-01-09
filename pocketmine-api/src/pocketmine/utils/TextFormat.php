@@ -1,6 +1,6 @@
 <?php
 namespace pocketmine\utils;
-use php\lang\JavaClass;
+use TextFormat as TextFormatNK;
 use function is_array;
 use function json_encode;
 use function json_last_error_msg;
@@ -20,9 +20,7 @@ use const PREG_JIT_STACKLIMIT_ERROR;
 use const PREG_RECURSION_LIMIT_ERROR;
 use const PREG_SPLIT_DELIM_CAPTURE;
 use const PREG_SPLIT_NO_EMPTY;
-$textFormatNK = new JavaClass("cn.nukkit.utils.TextFormat");
 abstract class TextFormat{
-    public static $textFormatNK;
     public const ESCAPE = "\xc2\xa7";
 	public const EOL = "\n";
 
@@ -67,10 +65,10 @@ abstract class TextFormat{
 		return $result;
     }
     public static function clean(string $string, bool $removeFormat = true) : string{
-        return static::$textFormatNK->getDeclaredMethod("clean", ["java.lang.String", JavaClass::primitive("boolean")])->invoke(null, $string, true);
+        return TextFormatNK::clean($string, true);
     }
 	public static function colorize(string $string, string $placeholder = "&") : string{
-		return static::$textFormatNK->getDeclaredMethod("colorize", [JavaClass::primitive("char"), "java.lang.String"])->invoke(null, $placeholder, $string);
+		return TextFormatNK::colorize($placeholder, $string);
 	}
 	/**
 	 * Returns an HTML-formatted string with colors/markup
@@ -186,4 +184,3 @@ abstract class TextFormat{
 		return $newString;
 	}
 }
-TextFormat::$textFormatNK = $textFormatNK;
