@@ -7,7 +7,7 @@ use LogLevel;
 class MainLogger{
   private $loggerNK;
   public static $logger;
-  private static $serverNK = ServerNK::getInstance();
+  private static $serverNK;
   private $format;
   public function __construct($loggerNK){
     $this->loggerNK = $loggerNK;
@@ -87,3 +87,4 @@ class MainLogger{
   public function syncFlushBuffer(){}
   public function run(){}
 }
+MainLogger::$serverNK = ServerNK::getInstance();
