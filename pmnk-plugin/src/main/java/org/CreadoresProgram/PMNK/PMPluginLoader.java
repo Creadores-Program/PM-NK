@@ -66,7 +66,7 @@ public class PMPluginLoader implements PluginLoader{
     }
     this.plugin.getLogger().info("Loading VersionInfo");
     this.eval(pmDir.get("pocketmine/VersionInfo.php"), "pocketmine/VersionInfo.php");
-    this.eval("<?php\nprint_r(get_declared_classes());", "Unknown1.php");
+    this.eval("<?php\nuse java\\reflection\\ReflectionClass;\nuse java\\reflection\\ReflectionTypes;\n$servernkclazz = ReflectionClass::forName('cn.nukkit.Server');\n$servernk = $servernkclazz->getMethod('getInstance', [])->invoke(null, []);\n$loggernk = $servernkclazz->getMethod('getLogger', [])->invoke($servernk, []);\n$loggerclazz = ReflectionClass::forName('cn.nukkit.utils.MainLogger');\n$loggerclazz->getMethod('info', [ReflectionClass::forName('java.lang.String')])->invoke($loggernk, 'Hola mundooo');", "Unknown1.php");
     //this.eval("<?php\nuse php\\lang\\JavaClass;\n$serverNk = new JavaClass('cn.nukkit.Server');\n$serverNk->getInstance()->getLogger()->info('Hola mundo!');", "Unknown2.php");
     //this.eval("<?php\n\\pocketmine\\Server::getInstance()->getLogger()->info('Hola mundoo');", "Unknown.php");
   }
