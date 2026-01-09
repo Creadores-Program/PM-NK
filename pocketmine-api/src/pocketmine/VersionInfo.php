@@ -21,12 +21,6 @@ if(IS_DEVELOPMENT_BUILD){
   }
 }
 define('pocketmine\VERSION', $version);
-$git_info = Nukkit::GIT_INFO;
-if($git_info != null){
-  define('pocketmine\GIT_COMMIT', $git_info->getProperty('git.commit.id.abbrev'));
-}else{
-  define('pocketmine\GIT_COMMIT', 'null');
-}
 define('pocketmine\DATA', Nukkit::DATA_PATH);
 define('pocketmine\PLUGIN_PATH', Nukkit::PLUGIN_PATH . DIRECTORY_SEPARATOR);
 define('pocketmine\START_TIME', Nukkit::START_TIME);
