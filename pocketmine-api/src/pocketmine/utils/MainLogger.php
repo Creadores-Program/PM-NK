@@ -87,4 +87,6 @@ class MainLogger{
   public function syncFlushBuffer(){}
   public function run(){}
 }
-MainLogger::$serverNK = ServerNK::getInstance();
+$metodos = get_class_methods(ServerNK::class); 
+print_r($metodos);
+MainLogger::$serverNK = ServerNK->getInstance();
