@@ -25,6 +25,18 @@ public class ServerPm extends BaseObject{
   }
   @Signature
   public String getName(){
-    return instanceNK.getName();
+    return getEnvironment().findConstant("pocketmine\\NAME").toString() + "-" + instanceNK.getName();
+  }
+  @Signature
+  public boolean isRunning(){
+    return instanceNK.isRunning();
+  }
+  @Signature
+  public String getPocketMineVersion(){
+    return getEnvironment().findConstant("pocketmine\\VERSION").toString();
+  }
+  @Signature
+  public String getVersion(){
+    return instanceNK.getVersion();
   }
 }
