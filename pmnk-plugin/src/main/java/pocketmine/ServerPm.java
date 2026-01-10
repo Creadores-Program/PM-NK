@@ -39,4 +39,16 @@ public class ServerPm extends BaseObject{
   public String getVersion(){
     return instanceNK.getVersion();
   }
+  @Signature
+  public String getApiVersion(){
+    return getEnvironment().findConstant("pocketmine\\BASE_VERSION").toString();
+  }
+  @Signature
+  public String getFilePath(){
+    return getEnvironment().findConstant("pocketmine\\PATH").toString();
+  }
+  @Signature
+  public String getResourcePath(){
+    return getEnvironment().findConstant("pocketmine\\RESOURCE_PATH").toString();
+  }
 }
