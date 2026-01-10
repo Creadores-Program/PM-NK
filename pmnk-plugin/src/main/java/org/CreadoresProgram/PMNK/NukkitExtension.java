@@ -12,6 +12,6 @@ public class NukkitExtension extends Extension{
   }
   @Override
   public void onRegister(CompileScope scope) {
-    registerClass(scope, Server.class, Nukkit.class, MainLogger.class, TextFormat.class);
+    registerClass(scope, Object.class, Server.class, Nukkit.class, MainLogger.class, TextFormat.class);
   }
 }
