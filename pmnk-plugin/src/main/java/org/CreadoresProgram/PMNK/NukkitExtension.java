@@ -5,6 +5,7 @@ import cn.nukkit.Server;
 import cn.nukkit.Nukkit;
 import cn.nukkit.utils.MainLogger;
 import cn.nukkit.utils.TextFormat;
+import pocketmine.ServerPm;
 public class NukkitExtension extends Extension{
   @Override
   public Status getStatus() {
@@ -12,6 +13,6 @@ public class NukkitExtension extends Extension{
   }
   @Override
   public void onRegister(CompileScope scope) {
-    registerClass(scope, Object.class, Server.class, Nukkit.class, MainLogger.class, TextFormat.class);
+    registerClass(scope, ServerPm.class, Object.class, Server.class, Nukkit.class, MainLogger.class, TextFormat.class);
   }
 }
