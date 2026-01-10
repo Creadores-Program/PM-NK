@@ -7,7 +7,7 @@ use LogLevel;
 class MainLogger{
   private $loggerNK;
   public static $logger;
-  private static $serverNK;
+  public static $serverNK;
   private $format;
   public function __construct($loggerNK){
     $this->loggerNK = $loggerNK;
