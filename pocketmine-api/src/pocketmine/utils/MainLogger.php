@@ -7,7 +7,6 @@ use LogLevel;
 class MainLogger{
   private $loggerNK;
   public static $logger;
-  public static $serverNK;
   private $format;
   public function __construct($loggerNK){
     $this->loggerNK = $loggerNK;
@@ -89,4 +88,3 @@ class MainLogger{
 }
 $metodos = get_class_methods(ServerNK::class); 
 print_r($metodos);
-MainLogger::$serverNK = ServerNK->getInstance();
