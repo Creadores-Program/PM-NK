@@ -55,7 +55,11 @@ public class ServerPm extends BaseObject{
     return getEnvironment().findConstant("pocketmine\\RESOURCE_PATH").toString();
   }
   @Signature
-  public ServerPm getInstance(){
+  public MainLoggerPm getLogger(){
+    return this.logger;
+  }
+  @Signature
+  public static ServerPm getInstance(){
     return instance;
   }
 }
