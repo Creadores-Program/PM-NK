@@ -24,7 +24,7 @@ public class ServerPm extends BaseObject{
   public void __construct(){
     instance = this;
     instanceNK = Server.getInstance();
-    this.logger = new MainLoggerPm(getEnvironment(), instanceNK.getLogger());
+    this.logger = new MainLoggerPm(getEnvironment(), instanceNK.getLogger(), true);
   }
   @Signature
   public String getName(){
