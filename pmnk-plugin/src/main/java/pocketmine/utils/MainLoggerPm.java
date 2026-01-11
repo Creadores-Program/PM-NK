@@ -12,14 +12,14 @@ public class MainLoggerPm extends BaseObject{
     public static MainLoggerPm logger;
     private String format = "";
     private MainLogger loggernk;
-    public ServerPm(Environment env, MainLogger loggernk, boolean isMain){
+    public MainLoggerPm(Environment env, MainLogger loggernk, boolean isMain){
         super(env);
         this.loggernk = loggernk;
         if(isMain){
             logger = this;
         }
     }
-    public ServerPm(Environment env, ClassEntity clazz){
+    public MainLoggerPm(Environment env, ClassEntity clazz){
         super(env, clazz);
     }
     @Signature
@@ -27,7 +27,7 @@ public class MainLoggerPm extends BaseObject{
     }
     @Signature
     public boolean isRegisteredStatic(){
-        return logger !== null;
+        return logger != null;
     }
     @Signature
     public static MainLoggerPm getLogger(){
