@@ -27,32 +27,32 @@ public class ServerPm extends BaseObject{
     this.logger = new MainLoggerPm(getEnvironment(), instanceNK.getLogger(), true);
   }
   @Signature
-  public String getName(){
-    return getEnvironment().findConstant("pocketmine\\NAME").toString() + "-" + instanceNK.getName();
+  public String getName(Environment env){
+    return env.findConstant("pocketmine\\NAME").toString() + "-" + instanceNK.getName();
   }
   @Signature
   public boolean isRunning(){
     return instanceNK.isRunning();
   }
   @Signature
-  public String getPocketMineVersion(){
-    return getEnvironment().findConstant("pocketmine\\VERSION").toString();
+  public String getPocketMineVersion(Environment env){
+    return env.findConstant("pocketmine\\VERSION").toString();
   }
   @Signature
   public String getVersion(){
     return instanceNK.getVersion();
   }
   @Signature
-  public String getApiVersion(){
-    return getEnvironment().findConstant("pocketmine\\BASE_VERSION").toString();
+  public String getApiVersion(Environment env){
+    return env.findConstant("pocketmine\\BASE_VERSION").toString();
   }
   @Signature
-  public String getFilePath(){
-    return getEnvironment().findConstant("pocketmine\\PATH").toString();
+  public String getFilePath(Environment env){
+    return env.findConstant("pocketmine\\PATH").toString();
   }
   @Signature
-  public String getResourcePath(){
-    return getEnvironment().findConstant("pocketmine\\RESOURCE_PATH").toString();
+  public String getResourcePath(Environment env){
+    return env.findConstant("pocketmine\\RESOURCE_PATH").toString();
   }
   @Signature
   public MainLoggerPm getLogger(){
