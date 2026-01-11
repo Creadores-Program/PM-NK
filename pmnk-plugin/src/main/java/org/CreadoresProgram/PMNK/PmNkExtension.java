@@ -6,13 +6,14 @@ import cn.nukkit.Nukkit;
 import cn.nukkit.utils.MainLogger;
 import cn.nukkit.utils.TextFormat;
 import pocketmine.ServerPm;
-public class NukkitExtension extends Extension{
+import pocketmine.utils.MainLoggerPm;
+public class PmNkExtension extends Extension{
   @Override
   public Status getStatus() {
     return Status.STABLE;
   }
   @Override
   public void onRegister(CompileScope scope) {
-    registerClass(scope, ServerPm.class, Object.class, Server.class, Nukkit.class, MainLogger.class, TextFormat.class);
+    registerClass(scope, ServerPm.class, MainLoggerPm.class, TextFormat.class);
   }
 }

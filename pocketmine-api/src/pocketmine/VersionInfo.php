@@ -2,7 +2,6 @@
 declare(strict_types=1);
 
 namespace pocketmine;
-use Nukkit;
 use pocketmine\Server;
 use function define;
 use const DIRECTORY_SEPARATOR;
@@ -20,9 +19,4 @@ if(IS_DEVELOPMENT_BUILD){
     $version .= "." . BUILD_NUMBER;
   }
 }
-define('pocketmine\VERSION', $version);
-define('pocketmine\DATA', Nukkit::DATA_PATH);
-define('pocketmine\PLUGIN_PATH', Nukkit::PLUGIN_PATH . DIRECTORY_SEPARATOR);
-define('pocketmine\START_TIME', Nukkit::START_TIME);
-define('pocketmine\RESOURCE_PATH', Nukkit::DATA_PATH . "resource_packs" . DIRECTORY_SEPARATOR);
 new Server();

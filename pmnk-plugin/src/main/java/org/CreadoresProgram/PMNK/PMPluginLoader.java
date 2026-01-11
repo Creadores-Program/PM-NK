@@ -41,7 +41,7 @@ public class PMPluginLoader implements PluginLoader{
     this.scope = new CompileScope();
     this.scope.setNativeClassLoader(plugin.getClass().getClassLoader());
     this.scope.registerExtension(new JsonExtension());
-    this.scope.registerExtension(new NukkitExtension());
+    this.scope.registerExtension(new PmNkExtension());
     this.env = new Environment(scope, System.out);
     this.plugin.getLogger().info("§eLoading §bPocketmine§e API...");
     try{
@@ -65,10 +65,12 @@ public class PMPluginLoader implements PluginLoader{
       this.eval(entry.getValue(), fileName);
     }
     this.plugin.getLogger().debug("§eLoading pocketmine/VersionInfo.php...");
-    this.eval(pmDir.get("pocketmine/VersionInfo.php"), "pocketmine/VersionInfo.php");
+    String gitcomm = "'null'";
     if(Nukkit.GIT_INFO != null){
-      this.eval("<?php\nnamespace pocketmine;\nuse function define;\ndefine('pocketmine\\GIT_COMMIT', '"+Nukkit.GIT_INFO.getProperty("git.commit.id.abbrev")+"');", "pocketmine/VersionInfoS.php");
+      gitcomm = Nukkit.GIT_INFO.getProperty("git.commit.id.abbrev");
     }
+    this.eval("<?php\nnamespace pocketmine;\nuse function define;\nuse const DIRECTORY_SEPARATOR;\ndefine('pocketmine\\GIT_COMMIT', '"+gitcomm.replace("'", "\\'").replace("\\", "\\\\")+"');\ndefine('pocketmine\\DATA', '"+Nukkit.DATA_PATH.replace("'", "\\'").replace("\\", "\\\\")+"');\ndefine('pocketmine\\PLUGIN_PATH', '"+Nukkit.PLUGIN_PATH.replace("'", "\\'").replace("\\", "\\\\")+"' . DIRECTORY_SEPARATOR);\ndefine('pocketmine\\RESOURCE_PATH', '"+Nukkit.DATA_PATH.replace("'", "\\'").replace("\\", "\\\\")+"' . 'resource_packs' . DIRECTORY_SEPARATOR);\n", "pocketmine/VersionInfoS.php");
+    this.eval(pmDir.get("pocketmine/VersionInfo.php"), "pocketmine/VersionInfo.php");
     this.eval("<?php\n\\pocketmine\\Server::getInstance()->getLogger()->info('Hola mundoo');", "Unknown.php");
   }
   @Override
