@@ -65,7 +65,7 @@ public class PMPluginLoader implements PluginLoader{
       this.eval(entry.getValue(), fileName);
     }
     this.plugin.getLogger().debug("§eLoading pocketmine/VersionInfo.php...");
-    String gitcomm = "'null'";
+    String gitcomm = "null";
     if(Nukkit.GIT_INFO != null){
       gitcomm = Nukkit.GIT_INFO.getProperty("git.commit.id.abbrev");
     }
