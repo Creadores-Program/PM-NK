@@ -2,6 +2,8 @@ package pocketmine;
 import php.runtime.lang.BaseObject;
 import php.runtime.reflection.ClassEntity;
 import php.runtime.env.Environment;
+import php.runtime.Memory;
+import php.runtime.memory.StringMemory;
 import cn.nukkit.Server;
 import pocketmine.utils.MainLoggerPm;
 import static php.runtime.annotation.Reflection.*;
@@ -14,6 +16,7 @@ public class ServerPm extends BaseObject{
   private static ServerPm instance;
   private static Server instanceNK;
   private MainLoggerPm logger;
+  private Memory serverID;
   public ServerPm(Environment env){
     super(env);
   }
@@ -27,6 +30,7 @@ public class ServerPm extends BaseObject{
     this.logger = new MainLoggerPm(env, instanceNK.getLogger(), true);
     try{
       env.invokeMethod(this.logger, "__construct");
+      this.serverID = env.invokeStatic("pocketmine\\utils\\UUID", "fromString", StringMemory.valueOf(instanceNK.getServerUniqueId().toString()));
     }catch(Throwable e){
       e.printStackTrace();
     }
@@ -58,6 +62,42 @@ public class ServerPm extends BaseObject{
   @Signature
   public String getResourcePath(Environment env){
     return env.findConstant("pocketmine\\RESOURCE_PATH").toString();
+  }
+  @Signature
+  public String getDataPath(){
+    return instanceNK.getDataPath();
+  }
+  @Signature
+  public String getPluginPath(){
+    return instanceNK.getPluginPath();
+  }
+  @Signature
+  public int getMaxPlayers(){
+    return instanceNK.getMaxPlayers();
+  }
+  @Signature
+  public boolean getOnlineMode(){
+    return instanceNK.getPropertyBoolean("xbox-auth", true);
+  }
+  @Signature
+  public boolean requiresAuthentication(){
+    return this.getOnlineMode();
+  }
+  @Signature
+  public int getPort(){
+    return instanceNK.getPort();
+  }
+  @Signature
+  public int getViewDistance(){
+    return instanceNK.getViewDistance();
+  }
+  @Signature
+  public int getAllowedViewDistance(int distance){
+    return Math.max(2, this.getViewDistance());
+  }
+  @Signature
+  public Memory getServerUniqueId(){
+    return this.serverID;
   }
   @Signature
   public MainLoggerPm getLogger(){
