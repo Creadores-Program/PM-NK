@@ -21,10 +21,10 @@ public class ServerPm extends BaseObject{
     super(env, clazz);
   }
   @Signature
-  public void __construct(){
+  public void __construct(Environment env){
     instance = this;
     instanceNK = Server.getInstance();
-    this.logger = new MainLoggerPm(getEnvironment(), instanceNK.getLogger(), true);
+    this.logger = new MainLoggerPm(env, instanceNK.getLogger(), true);
   }
   @Signature
   public String getName(Environment env){
