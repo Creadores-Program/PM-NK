@@ -4,6 +4,7 @@ import php.runtime.reflection.ClassEntity;
 import php.runtime.env.Environment;
 import php.runtime.Memory;
 import php.runtime.memory.StringMemory;
+import php.runtime.reflection.MethodEntity;
 import cn.nukkit.Server;
 import pocketmine.utils.MainLoggerPm;
 import static php.runtime.annotation.Reflection.*;
@@ -30,7 +31,9 @@ public class ServerPm extends BaseObject{
     this.logger = new MainLoggerPm(env, instanceNK.getLogger(), true);
     try{
       env.invokeMethod(this.logger, "__construct");
-      this.serverID = env.invokeStatic("pocketmine\\utils\\UUID", "fromString", StringMemory.valueOf(instanceNK.getServerUniqueId().toString()));
+      ClassEntity clazzUuidpm = env.fetchClass("pocketmine\\utils\\UUID");
+      MethodEntity fromStrUuidpm = clazzUuidpm.findMethod("fromstring");
+      this.serverID = fromStrUuidpm.invokeStatic(env, StringMemory.valueOf(instanceNK.getServerUniqueId().toString()));
     }catch(Throwable e){
       e.printStackTrace();
     }
@@ -93,7 +96,11 @@ public class ServerPm extends BaseObject{
   }
   @Signature
   public int getAllowedViewDistance(int distance){
-    return Math.max(2, this.getViewDistance());
+    return Math.max(2, Math.min(distance, this.getViewDistance()));
+  }
+  @Signature
+  public String getIp(){
+    return instanceNK.getIp();
   }
   @Signature
   public Memory getServerUniqueId(){
