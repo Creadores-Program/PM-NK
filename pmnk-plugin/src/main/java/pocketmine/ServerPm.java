@@ -27,7 +27,7 @@ public class ServerPm extends BaseObject{
     this.logger = new MainLoggerPm(env, instanceNK.getLogger(), true);
     try{
       env.invokeMethod(this.logger, "__construct");
-    }catch(Exception e){
+    }catch(Throwable e){
       e.printStackTrace();
     }
   }
