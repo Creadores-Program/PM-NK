@@ -72,6 +72,7 @@ public class PMPluginLoader implements PluginLoader{
     this.eval("<?php\nnamespace pocketmine;\nuse function define;\nuse const DIRECTORY_SEPARATOR;\ndefine('pocketmine\\GIT_COMMIT', '"+gitcomm.replace("'", "\\'").replace("\\", "\\\\")+"');\ndefine('pocketmine\\DATA', '"+Nukkit.DATA_PATH.replace("'", "\\'").replace("\\", "\\\\")+"');\ndefine('pocketmine\\PLUGIN_PATH', '"+Nukkit.PLUGIN_PATH.replace("'", "\\'").replace("\\", "\\\\")+"' . DIRECTORY_SEPARATOR);\ndefine('pocketmine\\RESOURCE_PATH', '"+Nukkit.DATA_PATH.replace("'", "\\'").replace("\\", "\\\\")+"' . 'resource_packs' . DIRECTORY_SEPARATOR);\n", "pocketmine/VersionInfoS.php");
     this.eval(pmDir.get("pocketmine/VersionInfo.php"), "pocketmine/VersionInfo.php");
     this.eval("<?php\n\\pocketmine\\Server::getInstance()->getLogger()->info('Hola mundoo');", "Unknown.php");
+    env.getDefaultBuffer().flush();
   }
   @Override
   public Plugin loadPlugin(String filename) throws Exception {
@@ -211,7 +212,6 @@ public class PMPluginLoader implements PluginLoader{
       Context context = new Context(new ByteArrayInputStream(code), modulePath, StandardCharsets.UTF_8);
       ModuleEntity module = env.importModule(context);
       module.include(env);
-      env.getDefaultBuffer().flush();
     }catch(Throwable e){
       plugin.getLogger().error("Error in php code.", e);
       e.printStackTrace();
