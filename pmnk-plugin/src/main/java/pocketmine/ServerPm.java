@@ -2,6 +2,8 @@ package pocketmine;
 import php.runtime.lang.BaseObject;
 import php.runtime.reflection.ClassEntity;
 import php.runtime.env.Environment;
+import php.runtime.Memory;
+import php.runtime.memory.ObjectMemory;
 import cn.nukkit.Server;
 import pocketmine.utils.MainLoggerPm;
 import static php.runtime.annotation.Reflection.*;
@@ -14,6 +16,7 @@ public class ServerPm extends BaseObject{
   private static ServerPm instance;
   private static Server instanceNK;
   private MainLoggerPm logger;
+  private Memory loggerM;
   public ServerPm(Environment env){
     super(env);
   }
@@ -25,6 +28,7 @@ public class ServerPm extends BaseObject{
     instance = this;
     instanceNK = Server.getInstance();
     this.logger = new MainLoggerPm(env, instanceNK.getLogger(), true);
+    this.loggerM = (Memory) new ObjectMemory(this.logger);
   }
   @Signature
   public String getName(Environment env){
@@ -55,8 +59,8 @@ public class ServerPm extends BaseObject{
     return env.findConstant("pocketmine\\RESOURCE_PATH").toString();
   }
   @Signature
-  public MainLoggerPm getLogger(){
-    return this.logger;
+  public Memory getLogger(){
+    return this.loggerM;
   }
   @Signature
   public static ServerPm getInstance(){
