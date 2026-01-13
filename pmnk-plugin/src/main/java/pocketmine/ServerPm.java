@@ -25,7 +25,11 @@ public class ServerPm extends BaseObject{
     instance = this;
     instanceNK = Server.getInstance();
     this.logger = new MainLoggerPm(env, instanceNK.getLogger(), true);
-    env.invokeMethod(this.logger, "__construct");
+    try{
+      env.invokeMethod(this.logger, "__construct");
+    }catch(Exception e){
+      e.printStackTrace();
+    }
   }
   @Signature
   public String getName(Environment env){
