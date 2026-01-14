@@ -1,5 +1,6 @@
 package pocketmine.utils;
 import php.runtime.lang.BaseObject;
+import php.runtime.lang.BaseException;
 import php.runtime.reflection.ClassEntity;
 import php.runtime.env.Environment;
 import cn.nukkit.utils.MainLogger;
@@ -10,6 +11,14 @@ import static php.runtime.annotation.Reflection.*;
 public class MainLoggerPm extends BaseObject{
     @Property
     public static MainLoggerPm logger;
+    public static final String EMERGENCY = "emergency";
+    public static final String ALERT = "alert";
+    public static final String CRITICAL = "critical";
+    public static final String ERROR = "error";
+    public static final String WARNING = "warning";
+    public static final String NOTICE = "notice";
+    public static final String INFO = "info";
+    public static final String DEBUG = "debug";
     private String format = "";
     private MainLogger loggernk;
     public MainLoggerPm(Environment env, MainLogger loggernk, boolean isMain){
@@ -78,11 +87,11 @@ public class MainLoggerPm extends BaseObject{
         this.loggernk.debug(message);
     }
     @Signature
-    public void logException(Throwable e){
+    public void logException(BaseException e){
         this.logException(e, null);
     }
     @Signature
-    public void logException(Throwable e, String trace){
+    public void logException(BaseException e, String trace){
         this.loggernk.logException(e);
     }
     @Signature

@@ -51,6 +51,8 @@ public class PMPluginLoader implements PluginLoader{
     }
   }
   private void loadPMAPI(){
+    this.plugin.getLogger().debug("§eLoading polyfills for Pocketmine-MP...");
+    this.eval("<?php\nclass RuntimeException extends Exception{}", "RuntimeException.php");
     this.plugin.saveResource("pocketmine-api/PocketMine-MP.phar");
     File pocketmineF = new File(plugin.getDataFolder() + "/pocketmine-api/PocketMine-MP.phar");
     Map<String, byte[]> pmDir = PharManager.readPhar(pocketmineF);
