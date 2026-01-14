@@ -5,6 +5,7 @@ import php.runtime.env.Environment;
 import php.runtime.Memory;
 import php.runtime.memory.StringMemory;
 import php.runtime.reflection.MethodEntity;
+import php.runtime.lang.spl.exception.InvalidArgumentException;
 import cn.nukkit.Server;
 import pocketmine.utils.MainLoggerPm;
 import static php.runtime.annotation.Reflection.*;
@@ -105,6 +106,55 @@ public class ServerPm extends BaseObject{
   @Signature
   public Memory getServerUniqueId(){
     return this.serverID;
+  }
+  @Signature
+  public boolean getAutoSave(){
+    return instanceNK.getAutoSave();
+  }
+  @Signature
+  public void setAutoSave(boolean value){
+    instanceNK.setAutoSave(value);
+  }
+  @Signature
+  public String getLevelType(){
+    String leveltype = instanceNK.getLevelType();
+    if(leveltype.equals("default")){
+      leveltype = leveltype.toUpperCase();
+    }
+    return leveltype;
+  }
+  @Signature
+  public boolean getGenerateStructures(){
+    if(instanceNK.getPluginManager().getPlugin("WorldGeneratorExtension") != null){
+      return true;
+    }
+    return false;
+  }
+  @Signature
+  public int getGamemode(){
+    return instanceNK.getGamemode();
+  }
+  @Signature
+  public boolean getForceGamemode(){
+    return instanceNK.getForceGamemode();
+  }
+  @Signature
+  public String getGamemodeString(int mode){
+    return instanceNK.getGamemodeString(mode);
+  }
+  @Signature
+  public String getGamemodeName(Environment env, int mode){
+    String gameName = instanceNK.getGamemodeString(mode, true);
+    if(gameName.equals("UNKNOWN")){
+      InvalidArgumentException ex = new InvalidArgumentException(env);
+      try{
+        env.invokeMethod(ex, "__construct", StringMemory.valueOf("Invalid gamemode "+mode));
+      }catch(Throwable e){
+        e.printStackTrace();
+      }
+      throw ex;
+    }
+    return gameName;
   }
   @Signature
   public MainLoggerPm getLogger(){
