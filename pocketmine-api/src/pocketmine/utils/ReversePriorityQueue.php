@@ -28,7 +28,7 @@ namespace pocketmine\utils;
  * @phpstan-template TValue
  * @phpstan-extends \SplPriorityQueue<TPriority, TValue>
  */
-class ReversePriorityQueue extends \SplPriorityQueue{
+class ReversePriorityQueue{
 
 	/**
 	 * @param mixed $priority1

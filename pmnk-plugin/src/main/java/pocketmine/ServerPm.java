@@ -32,7 +32,7 @@ public class ServerPm extends BaseObject{
     try{
       env.invokeMethod(this.logger, "__construct");
       ClassEntity clazzUuidpm = env.fetchClass("pocketmine\\utils\\UUID");
-      MethodEntity fromStrUuidpm = clazzUuidpm.findMethod("fromstring");
+      MethodEntity fromStrUuidpm = clazzUuidpm.findMethod("fromString");
       this.serverID = fromStrUuidpm.invokeStatic(env, StringMemory.valueOf(instanceNK.getServerUniqueId().toString()));
     }catch(Throwable e){
       e.printStackTrace();
