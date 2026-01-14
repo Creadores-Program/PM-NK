@@ -32,10 +32,12 @@ public class PMPluginLoader implements PluginLoader{
   private Server server;
   private CompileScope scope;
   private Environment env;
+  private static PMPluginLoader instance;
   private Map<String, Map<String, byte[]>> pluginsPM = new HashMap<>();
   private static final Pattern[] FILTERS = new Pattern[]{Pattern.compile("^.+\\.phar$")};
   private static final String[] apiVersion = "3.23.1".split("\\.");
   public PMPluginLoader(Server server){
+    instance = this;
     this.server = server;
     this.plugin = Main.getInstance();
     this.scope = new CompileScope();
@@ -49,6 +51,9 @@ public class PMPluginLoader implements PluginLoader{
     }catch(Throwable e){
       this.plugin.getLogger().error("Error to load Pocketmine API", e);
     }
+  }
+  public static PMPluginLoader getInstance(){
+    return instance;
   }
   private void loadPMAPI(){
     this.plugin.getLogger().debug("§eLoading polyfills for Pocketmine-MP...");
