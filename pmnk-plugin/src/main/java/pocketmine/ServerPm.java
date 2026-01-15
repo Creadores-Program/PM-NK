@@ -337,8 +337,24 @@ public class ServerPm extends BaseObject{
     return javaToMemory(prop, defaultValue);
   }
   @Signature
+  public String getConfigString(String variable){
+    return this.getConfigString(variable, "");
+  }
+  @Signature
   public String getConfigString(String variable, String defaultValue){
     return instanceNK.getPropertyString(variable, defaultValue);
+  }
+  @Signature
+  public void setConfigString(String variable, String value){
+    instanceNK.setPropertyString(variable, value);
+  }
+  @Signature
+  public int getConfigInt(String variable){
+    return this.getConfigInt(variable, 0);
+  }
+  @Signature
+  public int getConfigInt(String variable, int defaultValue){
+    return instanceNK.getPropertyInt(variable, defaultValue);
   }
   public static Memory javaToMemory(Object prop){
     return javaToMemory(prop, Memory.NULL);
@@ -362,7 +378,7 @@ public class ServerPm extends BaseObject{
     if (prop instanceof Object[]) {
       ArrayMemory array = new ArrayMemory();
       for (Object item : (Object[]) prop) {
-          array.add(JavaToMemory(item));
+          array.add(javaToMemory(item));
       }
       return array.toConstant();
     }
