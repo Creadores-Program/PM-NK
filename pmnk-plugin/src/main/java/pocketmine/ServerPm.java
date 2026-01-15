@@ -4,6 +4,8 @@ import php.runtime.reflection.ClassEntity;
 import php.runtime.env.Environment;
 import php.runtime.Memory;
 import php.runtime.memory.StringMemory;
+import php.runtime.memory.LongMemory;
+import php.runtime.memory.DoubleMemory;
 import php.runtime.reflection.MethodEntity;
 import php.runtime.lang.spl.exception.InvalidArgumentException;
 import php.runtime.memory.ArrayMemory;
@@ -239,17 +241,11 @@ public class ServerPm extends BaseObject{
   /*
   @Signature
   public SimpleCommandMapPm getCommandMap(){}
+  @Signature
+  public PlayerPm[] getLoggedInPlayers(){}
+  @Signature
+  public PlayerPm[] getOnlinePlayers(){}
   */
-  @Signature
-  public ArrayMemory getLoggedInPlayers(){
-    //no implemented
-    return null;
-  }
-  @Signature
-  public ArrayMemory getOnlinePlayers(){
-    //no implemented
-    return null;
-  }
   @Signature
   public boolean shouldSavePlayerData(){
     return instanceNK.shouldSavePlayerData();
@@ -271,24 +267,14 @@ public class ServerPm extends BaseObject{
   public PlayerPm getPlayer(String name){}
   @Signature
   public PlayerPm getPlayerExact(String name){}
-  */
   @Signature
-  public ArrayMemory matchPlayer(String partialName){
-    //no implemented
-    return null;
-  }
-  /*
+  public PlayerPm[] matchPlayer(String partialName){}
   @Signature
   public PlayerPm getPlayerByRawUUID(String rawUUID){}
   @Signature
   public PlayerPm getPlayerByUUID(Memory uuid){}
-  */
   @Signature
-  public ArrayMemory getLevels(){
-    //no implemented
-    return null;
-  }
-  /*
+  public LevelPm[] getLevels(){}
   @Signature
   public LevelPm getDefaultLevel(){}
   @Signature
@@ -297,6 +283,90 @@ public class ServerPm extends BaseObject{
   @Signature
   public boolean isLevelLoaded(String name){
     return instanceNK.isLevelLoaded(name);
+  }
+  /*
+  @Signature
+  public LevelPm getLevel(int levelId){}
+  @Signature
+  public LevelPm getLevelByName(String name){}
+  @Signature
+  public boolean unloadLevel(LevelPm level){
+    return this.unloadLevel(level, false);
+  }
+  @Signature
+  public boolean unloadLevel(LevelPm level, boolean forceUnload){}
+  @Signature
+  public void removeLevel(LevelPm level){}
+  */
+  @Signature
+  public boolean loadLevel(String name){
+    return instanceNK.loadLevel(name);
+  }
+  @Signature
+  public boolean generateLevel(String name){
+    return instanceNK.generateLevel(name);
+  }
+  @Signature
+  public boolean generateLevel(String name, long seed){
+    return instanceNK.generateLevel(name, seed);
+  }
+  /*
+  @Signature
+  public boolean generateLevel(String name, long seed, Class<? extends GeneratorPm> generator){}
+  @Signature
+  public boolean generateLevel(String name, long seed, Class<? extends GeneratorPm> generator, ArrayMemory options){}
+  */
+  @Signature
+  public boolean isLevelGenerated(String name){
+    return instanceNK.isLevelGenerated(name);
+  }
+  /*
+  @Signature
+  public EntityPm findEntity(int entityId){
+    return this.findEntity(entityId, null);
+  }
+  @Signature
+  public EntityPm findEntity(int entityId, LevelPm expectedLevel){}
+  */
+  @Signature
+  public Memory getProperty(String variable, Memory defaultValue){
+    Object prop = instanceNK.getProperty(variable, defaultValue);
+    if(prop == defaultValue){
+      return defaultValue;
+    }
+    return javaToMemory(prop, defaultValue);
+  }
+  @Signature
+  public String getConfigString(String variable, String defaultValue){
+    return instanceNK.getPropertyString(variable, defaultValue);
+  }
+  public static Memory javaToMemory(Object prop){
+    return javaToMemory(prop, Memory.NULL);
+  }
+  public static Memory javaToMemory(Object prop, Memory defaulValue){
+    if (prop == null) {
+      return Memory.NULL;
+    }
+    if (prop instanceof Integer || prop instanceof Long || prop instanceof Short || prop instanceof Byte) {
+      return LongMemory.valueOf(((Number) prop).longValue());
+    }
+    if (prop instanceof Double || prop instanceof Float) {
+      return DoubleMemory.valueOf(((Number) prop).doubleValue());
+    }
+    if (prop instanceof Boolean) {
+      return (boolean) prop ? Memory.TRUE : Memory.FALSE;
+    }
+    if (prop instanceof String || prop instanceof Character) {
+      return StringMemory.valueOf(prop.toString());
+    }
+    if (prop instanceof Object[]) {
+      ArrayMemory array = new ArrayMemory();
+      for (Object item : (Object[]) prop) {
+          array.add(JavaToMemory(item));
+      }
+      return array.toConstant();
+    }
+    return defaulValue;
   }
   @Signature
   public static ServerPm getInstance(){
