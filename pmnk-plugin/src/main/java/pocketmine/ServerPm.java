@@ -6,6 +6,7 @@ import php.runtime.Memory;
 import php.runtime.memory.StringMemory;
 import php.runtime.reflection.MethodEntity;
 import php.runtime.lang.spl.exception.InvalidArgumentException;
+import php.runtime.memory.ArrayMemory;
 import cn.nukkit.Server;
 import pocketmine.utils.MainLoggerPm;
 import static php.runtime.annotation.Reflection.*;
@@ -211,7 +212,7 @@ public class ServerPm extends BaseObject{
   @Signature
   public CraftingManagerPm getCraftingManager(){}
   @Signature
-  public ResourcePackManager getResourcePackManager(){}
+  public ResourcePackManagerPm getResourcePackManager(){}
   @Signature
   public AsyncPoolPm getAsyncPool(){}
   */
@@ -234,6 +235,68 @@ public class ServerPm extends BaseObject{
   @Signature
   public float getTickUsageAverage(){
     return instanceNK.getTickUsageAverage();
+  }
+  /*
+  @Signature
+  public SimpleCommandMapPm getCommandMap(){}
+  */
+  @Signature
+  public ArrayMemory getLoggedInPlayers(){
+    //no implemented
+    return null;
+  }
+  @Signature
+  public ArrayMemory getOnlinePlayers(){
+    //no implemented
+    return null;
+  }
+  @Signature
+  public boolean shouldSavePlayerData(){
+    return instanceNK.shouldSavePlayerData();
+  }
+  /*
+  @Signature
+  public IPlayerPm getOfflinePlayer(String name){}
+  */
+  @Signature
+  public boolean hasOfflinePlayerData(String name){
+    return instanceNK.getOfflinePlayerData(name) != null;
+  }
+  /*
+  @Signature
+  public CompoundTagPm getOfflinePlayerData(String name){}
+  @Signature
+  public void saveOfflinePlayerData(String name, CompoundTagPm nbtTag){}
+  @Signature
+  public PlayerPm getPlayer(String name){}
+  @Signature
+  public PlayerPm getPlayerExact(String name){}
+  */
+  @Signature
+  public ArrayMemory matchPlayer(String partialName){
+    //no implemented
+    return null;
+  }
+  /*
+  @Signature
+  public PlayerPm getPlayerByRawUUID(String rawUUID){}
+  @Signature
+  public PlayerPm getPlayerByUUID(Memory uuid){}
+  */
+  @Signature
+  public ArrayMemory getLevels(){
+    //no implemented
+    return null;
+  }
+  /*
+  @Signature
+  public LevelPm getDefaultLevel(){}
+  @Signature
+  public void setDefaultLevel(LevelPm level){}
+  */
+  @Signature
+  public boolean isLevelLoaded(String name){
+    return instanceNK.isLevelLoaded(name);
   }
   @Signature
   public static ServerPm getInstance(){
