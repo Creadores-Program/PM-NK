@@ -139,12 +139,12 @@ public class ServerPm extends BaseObject{
     return instanceNK.getForceGamemode();
   }
   @Signature
-  public String getGamemodeString(int mode){
-    return instanceNK.getGamemodeString(mode);
+  public static String getGamemodeString(int mode){
+    return Server.getGamemodeString(mode);
   }
   @Signature
-  public String getGamemodeName(Environment env, int mode){
-    String gameName = instanceNK.getGamemodeString(mode, true);
+  public static String getGamemodeName(Environment env, int mode){
+    String gameName = Server.getGamemodeString(mode, true);
     if(gameName.equals("UNKNOWN")){
       InvalidArgumentException ex = new InvalidArgumentException(env);
       try{
@@ -157,8 +157,83 @@ public class ServerPm extends BaseObject{
     return gameName;
   }
   @Signature
+  public static int getGamemodeFromString(String str){
+    return Server.getGamemodeFromString(str);
+  }
+  @Signature
+  public int getDifficulty(){
+    return instanceNK.getDifficulty();
+  }
+  @Signature
+  public boolean hasWhitelist(){
+    return instanceNK.hasWhitelist();
+  }
+  @Signature
+  public int getSpawnRadius(){
+    return instanceNK.getSpawnRadius();
+  }
+  @Signature
+  public boolean getAllowFlight(){
+    return instanceNK.getAllowFlight();
+  }
+  @Signature
+  public boolean isHardcore(){
+    return instanceNK.isHardcore();
+  }
+  @Signature
+  public int getDefaultGamemode(){
+    return instanceNK.getDefaultGamemode();
+  }
+  @Signature
+  public String getMotd(){
+    return instanceNK.getMotd();
+  }
+  @Signature
+  public BaseObject getLoader(){
+    //no implemented
+    return null;
+  }
+  @Signature
   public MainLoggerPm getLogger(){
     return this.logger;
+  }
+  /*
+  @Signature
+  public EntityMetadataStorePm getEntityMetadata(){}
+  @Signature
+  public PlayerMetadataStorePm getPlayerMetadata(){}
+  @Signature
+  public LevelMetadataStorePm getLevelMetadata(){}
+  @Signature
+  public getUpdater(){}
+  @Signature
+  public PluginManagerPm getPluginManager(){}
+  @Signature
+  public CraftingManagerPm getCraftingManager(){}
+  @Signature
+  public ResourcePackManager getResourcePackManager(){}
+  @Signature
+  public AsyncPoolPm getAsyncPool(){}
+  */
+  @Signature
+  public int getTick(){
+    return instanceNK.getTick();
+  }
+  @Signature
+  public float getTicksPerSecond(){
+    return instanceNK.getTicksPerSecond();
+  }
+  @Signature
+  public float getTicksPerSecondAverage(){
+    return instanceNK.getTicksPerSecondAverage();
+  }
+  @Signature
+  public float getTickUsage(){
+    return instanceNK.getTickUsage();
+  }
+  @Signature
+  public float getTickUsageAverage(){
+    return instanceNK.getTickUsageAverage();
   }
   @Signature
   public static ServerPm getInstance(){
