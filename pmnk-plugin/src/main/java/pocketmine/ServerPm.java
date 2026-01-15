@@ -356,6 +356,10 @@ public class ServerPm extends BaseObject{
   public int getConfigInt(String variable, int defaultValue){
     return instanceNK.getPropertyInt(variable, defaultValue);
   }
+  @Signature
+  public void setConfigInt(String variable, int value){
+    instanceNK.setPropertyInt(variable, value);
+  }
   public static Memory javaToMemory(Object prop){
     return javaToMemory(prop, Memory.NULL);
   }
