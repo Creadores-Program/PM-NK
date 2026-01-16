@@ -419,6 +419,101 @@ public class ServerPm extends BaseObject{
   public static ServerPm getInstance(){
     return instance;
   }
+  @Signature
+  public static void microSleep(int microseconds){}
+  @Signature
+  public int broadcastMessage(String message){
+    return instanceNK.broadcastMessage(message);
+  }
+  /*
+  @Signature
+  public int broadcastMessage(TextContainerPm message){}
+  @Signature
+  public int broadcastMessage(String message, CommandSenderPm[] recipients) {}
+  @Signature
+  public int broadcastMessage(TextContainerPm message, CommandSenderPm[] recipients){}
+  */
+  @Signature
+  public int broadcastTip(String tip){
+    //no implemented
+    return -1;
+  }
+  /*
+  @Signature
+  public int broadcastTip(String tip, CommandSenderPm[] recipients) {}
+  */
+  @Signature
+  public int broadcastPopup(String popup){
+    //no implemented
+    return -1;
+  }
+  /*
+  @Signature
+  public int broadcastPopup(String popup, CommandSenderPm[] recipients) {}
+  */
+  @Signature
+  public int broadcastTitle(String title){
+    return this.broadcastTitle(title, "");
+  }
+  @Signature
+  public int broadcastTitle(String title, String subtitle){
+    return this.broadcastTitle(title, subtitle, -1);
+  }
+  @Signature
+  public int broadcastTitle(String title, String subtitle, int fadeIn){
+    return this.broadcastTitle(title, subtitle, fadeIn, -1);
+  }
+  @Signature
+  public int broadcastTitle(String title, String subtitle, int fadeIn, int stay){
+    return this.broadcastTitle(title, subtitle, fadeIn, stay, -1);
+  }
+  @Signature
+  public int broadcastTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut){
+    //no implemented
+    return -1;
+  }
+  /*
+  @Signature
+  public int broadcastTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut, PlayerPm[] recipients){}
+  */
+  @Signature
+  public int broadcast(String message, String permissions){
+    return instanceNK.broadcast(message, permissions);
+  }
+  /*
+  @Signature
+  public int broadcast(TextContainerPm message, String permissions){}
+  @Signature
+  public void broadcastPacket(PlayerPm[] players, DataPacketPm packet){}
+  @Signature
+  public void batchPackets(PlayerPm[] players, DataPacketPm[] packets){
+    this.batchPackets(players, packets, false);
+  }
+  @Signature
+  public void batchPackets(PlayerPm[] players, DatapacketPm[] packets, boolean forceSync){
+    this.batchPackets(players, packets, forceSync, false);
+  }
+  @Signature
+  public void batchPackets(PlayerPm[] players, DatapacketPm[] packets, boolean forceSync, boolean immediate){}
+  @Signature
+  public void broadcastPacketsCallback(BatchPacketPm pk, PlayerPm[] players){
+    this.broadcastPacketsCallback(pk, players, false);
+  }
+  @Signature
+  public void broadcastPacketsCallback(BatchPacketPm pk, PlayerPm[] players, boolean immediate){}
+  */
+  @Signature
+  public void enablePlugins(int type){
+    //no implemented
+  }
+  /*
+  @Signature
+  public void enablePlugin(PluginPm plugin){}
+  */
+  @Signature
+  public void disablePlugins(){
+    instanceNK.disablePlugins();
+  }
   @Ignore
   public static Memory javaToMemory(Object prop){
     return javaToMemory(prop, Memory.NULL);
