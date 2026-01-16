@@ -360,10 +360,71 @@ public class ServerPm extends BaseObject{
   public void setConfigInt(String variable, int value){
     instanceNK.setPropertyInt(variable, value);
   }
+  @Signature
+  public boolean getConfigBool(String variable){
+    return this.getConfigBool(variable, false);
+  }
+  @Signature
+  public boolean getConfigBool(String variable, boolean defaultValue){
+    return instanceNK.getPropertyBoolean(variable, defaultValue);
+  }
+  /*
+  @Signature
+  public PluginIdentifiableCommandPm getPluginCommand(String name){}
+  @Signature
+  public BanListPm getNameBans(){}
+  @Signature
+  public BanListPm getIPBans(){}
+  */
+  @Signature
+  public void addOp(String name){
+    instanceNK.addOp(name);
+  }
+  @Signature
+  public void removeOp(String name){
+    instanceNK.removeOp(name);
+  }
+  @Signature
+  public void addWhitelist(String name){
+    instanceNK.addWhitelist(name);
+  }
+  @Signature
+  public void removeWhitelist(String name){
+    instanceNK.removeWhitelist(name);
+  }
+  @Signature
+  public boolean isWhitelisted(String name){
+    return instanceNK.isWhitelisted(name);
+  }
+  @Signature
+  public boolean isOp(String name){
+    return instanceNK.isOp(name);
+  }
+  /*
+  @Signature
+  public ConfigPm getWhitelisted(){}
+  @Signature
+  public ConfigPm getOps(){}
+  */
+  @Signature
+  public void reloadWhitelist(){
+    instanceNK.reloadWhitelist();
+  }
+  @Signature
+  public String[][] getCommandAliases(){
+    //no implemented
+    return null;
+  }
+  @Signature
+  public static ServerPm getInstance(){
+    return instance;
+  }
+  @Ignore
   public static Memory javaToMemory(Object prop){
     return javaToMemory(prop, Memory.NULL);
   }
-  public static Memory javaToMemory(Object prop, Memory defaulValue){
+  @Ignore
+  public static Memory javaToMemory(Object prop, Memory defaultValue){
     if (prop == null) {
       return Memory.NULL;
     }
@@ -387,9 +448,5 @@ public class ServerPm extends BaseObject{
       return array.toConstant();
     }
     return defaulValue;
-  }
-  @Signature
-  public static ServerPm getInstance(){
-    return instance;
   }
 }
