@@ -514,6 +514,72 @@ public class ServerPm extends BaseObject{
   public void disablePlugins(){
     instanceNK.disablePlugins();
   }
+  /*
+  @Signature
+  public boolean dispatchCommand(CommandSenderPm sender, String commandLine){
+    return this.dispatchCommand(sender, commandLine, false);
+  }
+  @Signature
+  public boolean dispatchCommand(CommandSenderPm sender, String commandLine, boolean internal){}
+  */
+  @Signature
+  public void reload(){
+    instanceNK.reload();
+  }
+  @Signature
+  public void shutdown(){
+    instanceNK.shutdown();
+  }
+  @Signature
+  public void forceShutdown(){
+    instanceNK.forceShutdown();
+  }
+  /*
+  @Signature
+  public QueryRegenerateEventPm getQueryInformation(){}
+  */
+  @Signature
+  public void handleSignal(int signo){}
+  /*
+  @Signature
+  public void exceptionHandler(BaseException e){
+    return this.exceptionHandler(e, Memory.NULL);
+  }
+  @Signature
+  public void exceptionHandler(BaseException e, Memory trace){}
+  */
+  @Signature
+  public void crashDump(){}
+  @Signature
+  public BaseObject[] __debugInfo(){
+    return new BaseObject[]{};
+  }
+  /*
+  @Signature
+  public SleeperHandlerPm getTickSleeper(){}
+  @Signature
+  public void onPlayerLogin(PlayerPm player){}
+  @Signature
+  public void onPlayerLogout(PlayerPm player){}
+  @Signature
+  public void addPlayer(PlayerPm player){}
+  @Signature
+  public void removePlayer(PlayerPm player){}
+  @Signature
+  public void addOnlinePlayer(PlayerPm player){}
+  @Signature
+  public void removeOnlinePlayer(PlayerPm player){}
+  @Signature
+  public void updatePlayerListData(Memory uuid, int entityId, String name, SkinPm skin){
+    this.updatePlayerListData(uuid, entityId, name, skin, "");
+  }
+  @Signature
+  public void updatePlayerListData(Memory uuid, int entityId, String name, SkinPm skin, String xboxUserId){
+    this.updatePlayerListData(uuid, entityId, name, skin, xboxUserId, null);
+  }
+  @Signature
+  public void updatePlayerListData(Memory uuid, int entityId, String name, SkinPm skin, String xboxUserId, PlayerPm[] players){}
+  */
   @Ignore
   public static Memory javaToMemory(Object prop){
     return javaToMemory(prop, Memory.NULL);
