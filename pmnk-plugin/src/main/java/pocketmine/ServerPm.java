@@ -447,6 +447,6 @@ public class ServerPm extends BaseObject{
       }
       return array.toConstant();
     }
-    return defaulValue;
+    return defaultValue;
   }
 }
