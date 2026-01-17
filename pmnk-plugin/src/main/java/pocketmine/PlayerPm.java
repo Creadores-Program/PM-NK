@@ -15,7 +15,7 @@ public class PlayerPm extends BaseObject{
         super(env);
         this.instanceNK = player;
     }
-    public ServerPm(Environment env, ClassEntity clazz){
+    public PlayerPm(Environment env, ClassEntity clazz){
         super(env, clazz);
     }
     @Signature
