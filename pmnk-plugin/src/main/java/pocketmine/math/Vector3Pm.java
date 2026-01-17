@@ -45,13 +45,10 @@ public class Vector3Pm extends BaseObject{
     switch(name){
       case "x":
         return ServerPm.javaToMemory(this.instanceNK.getX());
-        break;
       case "y":
         return ServerPm.javaToMemory(this.instanceNK.getY());
-        break;
       case "z":
         return ServerPm.javaToMemory(this.instanceNK.getZ());
-        break;
     }
     return Memory.NULL;
   }
