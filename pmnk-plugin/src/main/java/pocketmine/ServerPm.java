@@ -8,6 +8,7 @@ import php.runtime.memory.LongMemory;
 import php.runtime.memory.DoubleMemory;
 import php.runtime.reflection.MethodEntity;
 import php.runtime.lang.spl.exception.InvalidArgumentException;
+import php.runtime.lang.spl.exception.BadMethodCallException;
 import php.runtime.memory.ArrayMemory;
 import cn.nukkit.Server;
 import pocketmine.utils.MainLoggerPm;
@@ -579,7 +580,53 @@ public class ServerPm extends BaseObject{
   }
   @Signature
   public void updatePlayerListData(Memory uuid, int entityId, String name, SkinPm skin, String xboxUserId, PlayerPm[] players){}
+  @Signature
+  public void removePlayerListData(Memory uuid){
+    this.removePlayerListData(uuid, null);
+  }
+  @Signature
+  public void removePlayerListData(Memory uuid, PlayerPm[] players){}
+  @Signature
+  public void sendFullPlayerListData(PlayerPm p){}
   */
+  @Signature
+  public void doAutoSave(){
+    instanceNK.doAutoSave();
+  }
+  @Signature
+  public void sendUsage(){}
+  @Signature
+  public void sendUsage(int type){}
+  /*
+  @Signature
+  public BaseLangPm getLanguage(){}
+  */
+  @Signature
+  public boolean isLanguageForced(){
+    return instanceNK.isLanguageForced();
+  }
+  /*
+  @Signature
+  public NetworkPm getNetwork() {}
+  @Signature
+  public MemoryManagerPm getMemoryManager(){}
+  @Signature
+  public void handlePacket(AdvancedSourceInterfacePm interface, String address, int port, String payload){}
+  */
+  @Signature
+  public void __sleep(Environment env){
+    BadMethodCallException ex = new BadMethodCallException(env);
+    try{
+      env.invokeMethod(ex, "__construct", StringMemory.valueOf("Cannot serialize Server instance"));
+    }catch(Throwable e){
+      e.printStackTrace();
+    }
+    throw ex;
+  }
+  @Ignore
+  public Server getnk(){
+    return instanceNK;
+  }
   @Ignore
   public static Memory javaToMemory(Object prop){
     return javaToMemory(prop, Memory.NULL);
