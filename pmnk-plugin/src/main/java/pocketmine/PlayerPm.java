@@ -1,6 +1,7 @@
 package pocketmine;
 import php.runtime.lang.BaseObject;
 import php.runtime.env.Environment;
+import php.runtime.memory.StringMemory;
 import php.runtime.lang.spl.exception.BadMethodCallException;
 import static php.runtime.annotation.Reflection.*;
 import cn.nukkit.Player;
