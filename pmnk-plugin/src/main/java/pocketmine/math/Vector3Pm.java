@@ -41,6 +41,73 @@ public class Vector3Pm extends BaseObject{
     this.instanceNK = new Vector3(((double) x), ((double) y), ((double) z));
   }
   @Signature
+  public double getX(){
+    return this.instanceNK.getX();
+  }
+  @Signature
+  public double getY(){
+    return this.instanceNK.getY();
+  }
+  @Signature
+  public double getZ(){
+    return this.instanceNK.getZ();
+  }
+  @Signature
+  public int getFloorX(){
+    return this.instanceNK.getFloorX();
+  }
+  @Signature
+  public int getFloorY(){
+    return this.instanceNK.getFloorY();
+  }
+  @Signature
+  public int getFloorZ(){
+    return this.instanceNK.getFloorZ();
+  }
+  @Signature
+  public Vector3Pm add(Environment env, int x, int y, int z){
+    Vector3Pm vec = new Vector3Pm(env, this.instanceNK.add(((double) x), ((double) y), ((double) z)));
+    try{
+        env.invokeMethod(vec, "__construct");
+    }catch(Throwable e){
+        e.printStackTrace();
+    }
+    return vec;
+  }
+  @Signature
+  public Vector3Pm add(Environment env, float x, float y, float z){
+    Vector3Pm vec = new Vector3Pm(env, this.instanceNK.add(((double) x), ((double) y), ((double) z)));
+    try{
+        env.invokeMethod(vec, "__construct");
+    }catch(Throwable e){
+        e.printStackTrace();
+    }
+    return vec;
+  }
+  @Signature
+  public Vector3Pm addVector(Environment env, Vector3Pm v){
+    Vector3Pm vec = new Vector3Pm(env, this.instanceNK.add(v.getNK()));
+    try{
+        env.invokeMethod(vec, "__construct");
+    }catch(Throwable e){
+        e.printStackTrace();
+    }
+    return vec;
+  }
+  @Signature
+  public Vector3Pm subtract(int x, int y, int z){
+    return this.add(-x, -y, -z);
+  }
+  @Signature
+  public Vector3Pm subtract(float x, float y, float z){
+    return this.add(-x, -y, -z);
+  }
+  @Signature
+  public Vector3Pm subtractVector(Vector3Pm v){
+    Vector3 vnk = v.getNK();
+    return this.add(-((float) vnk.getX()), -((float) vnk.getY()), -((float) vnk.getZ()));
+  }
+  @Signature
   public Memory __get(String name){
     switch(name){
       case "x":
@@ -79,5 +146,9 @@ public class Vector3Pm extends BaseObject{
         this.instanceNK.z = (double) val;
         break;
     }
+  }
+  @Ignore
+  public Vector3 getNK(){
+    return this.instanceNK;
   }
 }
