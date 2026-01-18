@@ -95,17 +95,17 @@ public class Vector3Pm extends BaseObject{
     return vec;
   }
   @Signature
-  public Vector3Pm subtract(int x, int y, int z){
-    return this.add(-x, -y, -z);
+  public Vector3Pm subtract(Environment env, int x, int y, int z){
+    return this.add(env, -x, -y, -z);
   }
   @Signature
-  public Vector3Pm subtract(float x, float y, float z){
-    return this.add(-x, -y, -z);
+  public Vector3Pm subtract(Environment env, float x, float y, float z){
+    return this.add(env, -x, -y, -z);
   }
   @Signature
-  public Vector3Pm subtractVector(Vector3Pm v){
+  public Vector3Pm subtractVector(Environment env, Vector3Pm v){
     Vector3 vnk = v.getNK();
-    return this.add(-((float) vnk.getX()), -((float) vnk.getY()), -((float) vnk.getZ()));
+    return this.add(env, -((float) vnk.getX()), -((float) vnk.getY()), -((float) vnk.getZ()));
   }
   @Signature
   public Memory __get(String name){
