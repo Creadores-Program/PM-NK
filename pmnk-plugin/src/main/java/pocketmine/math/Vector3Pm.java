@@ -1,4 +1,5 @@
 package pocketmine.math;
+import java.util.Arrays;
 import php.runtime.lang.BaseObject;
 import php.runtime.env.Environment;
 import php.runtime.reflection.ClassEntity;
@@ -106,6 +107,312 @@ public class Vector3Pm extends BaseObject{
   public Vector3Pm subtractVector(Environment env, Vector3Pm v){
     Vector3 vnk = v.getNK();
     return this.add(env, -((float) vnk.getX()), -((float) vnk.getY()), -((float) vnk.getZ()));
+  }
+  @Signature
+  public Vector3Pm multiply(Environment env, float number){
+    Vector3Pm vpm = new Vector3Pm(env, this.instanceNK.multiply((double) number));
+    try{
+        env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+        e.printStackTrace();
+    }
+    return vpm;
+  }
+  @Signature
+  public Vector3Pm divide(Environment env, float number){
+    Vector3Pm vpm = new Vector3Pm(env, this.instanceNK.divide((double) number));
+    try{
+        env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+        e.printStackTrace();
+    }
+    return vpm;
+  }
+  @Signature
+  public Vector3Pm ceil(Environment env){
+    Vector3Pm vpm = new Vector3Pm(env, this.instanceNK.ceil());
+    try{
+        env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+        e.printStackTrace();
+    }
+    return vpm;
+  }
+  @Signature
+  public Vector3Pm floor(Environment env){
+    Vector3Pm vpm = new Vector3Pm(env, this.instanceNK.floor());
+    try{
+        env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+        e.printStackTrace();
+    }
+    return vpm;
+  }
+  @Signature
+  public Vector3Pm round(Environment env, Memory... args){
+    Vector3Pm vpm = new Vector3Pm(env, this.instanceNK.round());
+    try{
+        env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+        e.printStackTrace();
+    }
+    return vpm;
+  }
+  @Signature
+  public Vector3Pm abs(Environment env){
+    Vector3Pm vpm = new Vector3Pm(env, this.instanceNK.abs());
+    try{
+        env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+        e.printStackTrace();
+    }
+    return vpm;
+  }
+  @Signature
+  public Vector3Pm getSide(int side){
+    return this.getSide(side, 1);
+  }
+  @Signature
+  public Vector3Pm getSide(int  side, int step){
+    //no implemented
+    return null;
+  }
+  @Signature
+  public Vector3Pm down(){
+    return this.down(1);
+  }
+  @Signature
+  public Vector3Pm down(Environment env, int step){
+    Vector3Pm vpm = new Vector3Pm(env, this.instanceNK.down(step));
+    try{
+        env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+        e.printStackTrace();
+    }
+    return vpm;
+  }
+  @Signature
+  public Vector3Pm up(){
+    return this.up(1);
+  }
+  @Signature
+  public Vector3Pm up(Environment env, int step){
+    Vector3Pm vpm = new Vector3Pm(env, this.instanceNK.up(step));
+    try{
+        env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+        e.printStackTrace();
+    }
+    return vpm;
+  }
+  @Signature
+  public Vector3Pm north(){
+    return this.north(1);
+  }
+  @Signature
+  public Vector3Pm north(Environment env, int step){
+    Vector3Pm vpm = new Vector3Pm(env, this.instanceNK.north(step));
+    try{
+        env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+        e.printStackTrace();
+    }
+    return vpm;
+  }
+  @Signature
+  public Vector3Pm south(){
+    return this.south(1);
+  }
+  @Signature
+  public Vector3Pm south(Environment env, int step){
+    Vector3Pm vpm = new Vector3Pm(env, this.instanceNK.south(step));
+    try{
+        env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+        e.printStackTrace();
+    }
+    return vpm;
+  }
+  @Signature
+  public Vector3Pm west(){
+    return this.west(1);
+  }
+  @Signature
+  public Vector3Pm west(Environment env, int step){
+    Vector3Pm vpm = new Vector3Pm(env, this.instanceNK.west(step));
+    try{
+        env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+        e.printStackTrace();
+    }
+    return vpm;
+  }
+  @Signature
+  public Vector3Pm east(){
+    return this.east(1);
+  }
+  @Signature
+  public Vector3Pm east(Environment env, int step){
+    Vector3Pm vpm = new Vector3Pm(env, this.instanceNK.east(step));
+    try{
+        env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+        e.printStackTrace();
+    }
+    return vpm;
+  }
+  /*
+  @Signature
+  public GeneratorPm sides(){
+    return this.sides(1);
+  }
+  @Signature
+  public GeneratorPm sides(int step){}
+  @Signature
+  public Vector3Pm[] sidesArray(){
+    return this.sidesArray(false);
+  }
+  @Signature
+  public Vector3Pm[] sidesArray(boolean keys){
+    return this.sidesArray(keys, 1);
+  }
+  @Signature
+  public Vector3Pm[] sidesArray(boolean keys, int step){}
+  @Signature
+  public void sidesAroundAxis(int axis){
+    this.sidesAroundAxis(axis, 1);
+  }
+  @Signature
+  public void sidesAroundAxis(int axis, int step){}
+  */
+  @Signature
+  public Vector3Pm asVector3(Environment env){
+    Vector3Pm vpm = new Vector3Pm(env, this.instanceNK.clone());
+    try{
+        env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+        e.printStackTrace();
+    }
+    return vpm;
+  }
+  @Signature
+  public float distance(Vector3Pm pos){
+    return (float) this.instanceNK.distance(pos.getNK());
+  }
+  @Signature
+  public float distanceSquared(Vector3Pm pos){
+    return (float) this.instanceNK.distanceSquared(pos.getNK());
+  }
+  @Signature
+  public float maxPlainDistance(float x){
+    return this.maxPlainDistance(x, 0);
+  }
+  @Signature
+  public float maxPlainDistance(float x, float z){
+    return (float) this.instanceNK.maxPlainDistance(((double) x), ((double) z));
+  }
+  @Signature
+  public float maxPlainDistance(Vector3Pm x){
+    return (float) this.instanceNK.maxPlainDistance(x.getNK());
+  }
+  @Signature
+  public float maxPlainDistance(Vector3Pm x, float z){
+    return this.maxPlainDistance(x);
+  }
+  /*
+  @Signature
+  public float maxPlainDistance(Vector2Pm x){
+    return (float) this.instanceNK.maxPlainDistance(x.getNK());
+  }
+  @Signature
+  public float maxPlainDistance(Vector2Pm x, float z){
+    return this.maxPlainDistance(x);
+  }
+  */
+  @Signature
+  public float length(){
+    return (float) this.instanceNK.length();
+  }
+  @Signature
+  public float lengthSquared(){
+    return (float) this.instanceNK.lengthSquared();
+  }
+  @Signature
+  public Vector3Pm normalize(Environment env){
+    Vector3Pm vpm = new Vector3Pm(env, this.instanceNK.normalize());
+    try{
+        env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+        e.printStackTrace();
+    }
+    return vpm;
+  }
+  @Signature
+  public float dot(Vector3Pm v){
+    return (float) this.instanceNK.dot(v.getNK());
+  }
+  @Signature
+  public float cross(Vector3Pm v){
+    return (float) this.instanceNK.cross(v.getNK());
+  }
+  @Signature
+  public boolean equals(Vector3Pm v){
+    return this.instanceNK.equals(v.getNK());
+  }
+  @Signature
+  public Vector3Pm getIntermediateWithXValue(Environment env, Vector3Pm v, float x){
+    Vector3Pm vpm = new Vector3Pm(env, this.instanceNK.getIntermediateWithXValue(v.getNK(), ((double) x)));
+    try{
+        env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+        e.printStackTrace();
+    }
+    return vpm;
+  }
+  @Signature
+  public Vector3Pm getIntermediateWithYValue(Environment env, Vector3Pm v, float y){
+    Vector3Pm vpm = new Vector3Pm(env, this.instanceNK.getIntermediateWithYValue(v.getNK(), ((double) y)));
+    try{
+        env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+        e.printStackTrace();
+    }
+    return vpm;
+  }
+  @Signature
+  public Vector3Pm getIntermediateWithZValue(Environment env, Vector3Pm v, float z){
+    Vector3Pm vpm = new Vector3Pm(env, this.instanceNK.getIntermediateWithXValue(v.getNK(), ((double) z)));
+    try{
+        env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+        e.printStackTrace();
+    }
+    return vpm;
+  }
+  @Signature
+  public String __toString(){
+    return this.instanceNK.toString();
+  }
+  //withComponents
+  @Signature
+  public Vector3Pm maxComponents(Environment env, Vector3Pm vector, Vector3Pm... vectors){
+    Vector3 vectorn = vector.getNK();
+    Vector3[] vectorsn = Arrays.stream(vectors).map(v -> v.getNK()).toArray(Vector3[]::new);
+    double x = vectorn.getX();
+    double y = vectorn.getY();
+    double z = vectorn.getZ();
+    for(Vector3 position : vectorsn){
+      x = Math.max(x, position.getX());
+      y = Math.max(y, position.getY());
+      z = Math.max(z, position.getZ());
+    }
+    Vector3Pm vpm = new Vector3Pm(env, new Vector3(x, y, z));
+    try{
+      env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+      e.printStackTrace();
+    }
+    return vpm;
   }
   @Signature
   public Memory __get(String name){
