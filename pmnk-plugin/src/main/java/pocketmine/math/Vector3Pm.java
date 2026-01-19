@@ -399,7 +399,88 @@ public class Vector3Pm extends BaseObject{
   public String __toString(){
     return this.instanceNK.toString();
   }
-  //withComponents
+  @Signature
+  public Vector3Pm withComponents(){
+    return this;
+  }
+  @Signature
+  public Vector3Pm withComponents(int x){
+    if(x != null){
+      Vector3Pm vpm = new Vector3Pm(env, new Vector3(((double) x), this.instanceNK.getY(), this.instanceNK.getZ()));
+      try{
+        env.invokeMethod(vpm, "__construct");
+      }catch(Throwable e){
+        e.printStackTrace();
+      }
+      return vpm;
+    }
+    return this;
+  }
+  @Signature
+  public Vector3Pm withComponents(float x){
+    if(x != null){
+      Vector3Pm vpm = new Vector3Pm(env, new Vector3(((double) x), this.instanceNK.getY(), this.instanceNK.getZ()));
+      try{
+        env.invokeMethod(vpm, "__construct");
+      }catch(Throwable e){
+        e.printStackTrace();
+      }
+      return vpm;
+    }
+    return this;
+  }
+  @Signature
+  public Vector3Pm withComponents(int x, int y){
+    if(x != null && y != null){
+      Vector3Pm vpm = new Vector3Pm(env, new Vector3(((double) x), ((double) y), this.instanceNK.getZ()));
+      try{
+        env.invokeMethod(vpm, "__construct");
+      }catch(Throwable e){
+        e.printStackTrace();
+      }
+      return vpm;
+    }
+    return this.withComponents(x);
+  }
+  @Signature
+  public Vector3Pm withComponents(float x, float y){
+    if(x != null && y != null){
+      Vector3Pm vpm = new Vector3Pm(env, new Vector3(((double) x), ((double) y), this.instanceNK.getZ()));
+      try{
+        env.invokeMethod(vpm, "__construct");
+      }catch(Throwable e){
+        e.printStackTrace();
+      }
+      return vpm;
+    }
+    return this.withComponents(x);
+  }
+  @Signature
+  public Vector3Pm withComponents(int x, int y, int z){
+    if(x != null && y != null && z != null){
+      Vector3Pm vpm = new Vector3Pm(env, new Vector3(((double) x), ((double) y), ((double) z)));
+      try{
+        env.invokeMethod(vpm, "__construct");
+      }catch(Throwable e){
+        e.printStackTrace();
+      }
+      return vpm;
+    }
+    return this.withComponents(x, y);
+  }
+  @Signature
+  public Vector3Pm withComponents(float x, float y, float z){
+    if(x != null && y != null && z != null){
+      Vector3Pm vpm = new Vector3Pm(env, new Vector3(((double) x), ((double) y), ((double) z)));
+      try{
+        env.invokeMethod(vpm, "__construct");
+      }catch(Throwable e){
+        e.printStackTrace();
+      }
+      return vpm;
+    }
+    return this.withComponents(x, y);
+  }
   @Signature
   public Vector3Pm maxComponents(Environment env, Vector3Pm vector, Vector3Pm... vectors){
     Vector3 vectorn = vector.getNK();
@@ -411,6 +492,45 @@ public class Vector3Pm extends BaseObject{
       x = Math.max(x, position.getX());
       y = Math.max(y, position.getY());
       z = Math.max(z, position.getZ());
+    }
+    Vector3Pm vpm = new Vector3Pm(env, new Vector3(x, y, z));
+    try{
+      env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+      e.printStackTrace();
+    }
+    return vpm;
+  }
+  @Signature
+  public Vector3Pm minComponents(Environment env, Vector3Pm vector, Vector3Pm... vectors){
+    Vector3 vectorn = vector.getNK();
+    Vector3[] vectorsn = Arrays.stream(vectors).map(v -> v.getNK()).toArray(Vector3[]::new);
+    double x = vectorn.getX();
+    double y = vectorn.getY();
+    double z = vectorn.getZ();
+    for(Vector3 position : vectorsn){
+      x = Math.min(x, position.getX());
+      y = Math.min(y, position.getY());
+      z = Math.min(z, position.getZ());
+    }
+    Vector3Pm vpm = new Vector3Pm(env, new Vector3(x, y, z));
+    try{
+      env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+      e.printStackTrace();
+    }
+    return vpm;
+  }
+  @Signature
+  public Vector3Pm sum(Environment env, Vector3Pm... vector3s){
+    Vector3[] vectorsn = Arrays.stream(vector3s).map(v -> v.getNK()).toArray(Vector3[]::new);
+    double x = 0;
+    double y = 0;
+    double z = 0;
+    for(Vector3 position : vectorsn){
+      x += position.getX();
+      y += position.getY();
+      z += position.getZ();
     }
     Vector3Pm vpm = new Vector3Pm(env, new Vector3(x, y, z));
     try{
