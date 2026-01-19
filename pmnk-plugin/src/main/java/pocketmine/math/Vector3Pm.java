@@ -404,7 +404,7 @@ public class Vector3Pm extends BaseObject{
     return this;
   }
   @Signature
-  public Vector3Pm withComponents(int x){
+  public Vector3Pm withComponents(Environment env, int x){
     if(x != null){
       Vector3Pm vpm = new Vector3Pm(env, new Vector3(((double) x), this.instanceNK.getY(), this.instanceNK.getZ()));
       try{
@@ -417,7 +417,7 @@ public class Vector3Pm extends BaseObject{
     return this;
   }
   @Signature
-  public Vector3Pm withComponents(float x){
+  public Vector3Pm withComponents(Environment env, float x){
     if(x != null){
       Vector3Pm vpm = new Vector3Pm(env, new Vector3(((double) x), this.instanceNK.getY(), this.instanceNK.getZ()));
       try{
@@ -430,9 +430,9 @@ public class Vector3Pm extends BaseObject{
     return this;
   }
   @Signature
-  public Vector3Pm withComponents(int x, int y){
-    if(x != null && y != null){
-      Vector3Pm vpm = new Vector3Pm(env, new Vector3(((double) x), ((double) y), this.instanceNK.getZ()));
+  public Vector3Pm withComponents(Environment env, int x, int y){
+    if(x != null || y != null){
+      Vector3Pm vpm = new Vector3Pm(env, new Vector3(((x != null) ? ((double) x) : this.instanceNK.getX()), ((y != null) ? ((double) y) : this.instanceNK.getY()), this.instanceNK.getZ()));
       try{
         env.invokeMethod(vpm, "__construct");
       }catch(Throwable e){
@@ -440,12 +440,12 @@ public class Vector3Pm extends BaseObject{
       }
       return vpm;
     }
-    return this.withComponents(x);
+    return this;
   }
   @Signature
-  public Vector3Pm withComponents(float x, float y){
-    if(x != null && y != null){
-      Vector3Pm vpm = new Vector3Pm(env, new Vector3(((double) x), ((double) y), this.instanceNK.getZ()));
+  public Vector3Pm withComponents(Environment env, float x, float y){
+    if(x != null || y != null){
+      Vector3Pm vpm = new Vector3Pm(env, new Vector3(((x != null) ? ((double) x) : this.instanceNK.getX()), ((y != null) ? ((double) y) : this.instanceNK.getY()), this.instanceNK.getZ()));
       try{
         env.invokeMethod(vpm, "__construct");
       }catch(Throwable e){
@@ -453,12 +453,12 @@ public class Vector3Pm extends BaseObject{
       }
       return vpm;
     }
-    return this.withComponents(x);
+    return this;
   }
   @Signature
-  public Vector3Pm withComponents(int x, int y, int z){
-    if(x != null && y != null && z != null){
-      Vector3Pm vpm = new Vector3Pm(env, new Vector3(((double) x), ((double) y), ((double) z)));
+  public Vector3Pm withComponents(Environment env, int x, int y, int z){
+    if(x != null || y != null || z != null){
+      Vector3Pm vpm = new Vector3Pm(env, new Vector3(((x != null) ? ((double) x) : this.instanceNK.getX()), ((y != null) ? ((double) y) : this.instanceNK.getY()), ((z != null) ? ((double) z) : this.instanceNK.getZ())));
       try{
         env.invokeMethod(vpm, "__construct");
       }catch(Throwable e){
@@ -466,12 +466,12 @@ public class Vector3Pm extends BaseObject{
       }
       return vpm;
     }
-    return this.withComponents(x, y);
+    return this;
   }
   @Signature
-  public Vector3Pm withComponents(float x, float y, float z){
-    if(x != null && y != null && z != null){
-      Vector3Pm vpm = new Vector3Pm(env, new Vector3(((double) x), ((double) y), ((double) z)));
+  public Vector3Pm withComponents(Environment env, float x, float y, float z){
+    if(x != null || y != null || z != null){
+      Vector3Pm vpm = new Vector3Pm(env, new Vector3(((x != null) ? ((double) x) : this.instanceNK.getX()), ((y != null) ? ((double) y) : this.instanceNK.getY()), ((z != null) ? ((double) z) : this.instanceNK.getZ())));
       try{
         env.invokeMethod(vpm, "__construct");
       }catch(Throwable e){
@@ -479,7 +479,7 @@ public class Vector3Pm extends BaseObject{
       }
       return vpm;
     }
-    return this.withComponents(x, y);
+    return this;
   }
   @Signature
   public Vector3Pm maxComponents(Environment env, Vector3Pm vector, Vector3Pm... vectors){
