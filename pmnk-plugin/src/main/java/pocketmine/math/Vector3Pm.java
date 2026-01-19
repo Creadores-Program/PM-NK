@@ -352,8 +352,14 @@ public class Vector3Pm extends BaseObject{
     return (float) this.instanceNK.dot(v.getNK());
   }
   @Signature
-  public float cross(Vector3Pm v){
-    return (float) this.instanceNK.cross(v.getNK());
+  public Vector3Pm cross(Vector3Pm v){
+    Vector3Pm vpm = new Vector3Pm(env, this.instanceNK.cross(v.getNK()));
+    try{
+        env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+        e.printStackTrace();
+    }
+    return vpm;
   }
   @Signature
   public boolean equals(Vector3Pm v){
