@@ -352,7 +352,7 @@ public class Vector3Pm extends BaseObject{
     return (float) this.instanceNK.dot(v.getNK());
   }
   @Signature
-  public Vector3Pm cross(Vector3Pm v){
+  public Vector3Pm cross(Environment env, Vector3Pm v){
     Vector3Pm vpm = new Vector3Pm(env, this.instanceNK.cross(v.getNK()));
     try{
         env.invokeMethod(vpm, "__construct");
