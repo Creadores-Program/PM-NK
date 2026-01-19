@@ -178,8 +178,8 @@ public class Vector3Pm extends BaseObject{
     return null;
   }
   @Signature
-  public Vector3Pm down(){
-    return this.down(1);
+  public Vector3Pm down(Environment env){
+    return this.down(env, 1);
   }
   @Signature
   public Vector3Pm down(Environment env, int step){
@@ -192,8 +192,8 @@ public class Vector3Pm extends BaseObject{
     return vpm;
   }
   @Signature
-  public Vector3Pm up(){
-    return this.up(1);
+  public Vector3Pm up(Environment env){
+    return this.up(env, 1);
   }
   @Signature
   public Vector3Pm up(Environment env, int step){
@@ -206,8 +206,8 @@ public class Vector3Pm extends BaseObject{
     return vpm;
   }
   @Signature
-  public Vector3Pm north(){
-    return this.north(1);
+  public Vector3Pm north(Environment env){
+    return this.north(env, 1);
   }
   @Signature
   public Vector3Pm north(Environment env, int step){
@@ -220,8 +220,8 @@ public class Vector3Pm extends BaseObject{
     return vpm;
   }
   @Signature
-  public Vector3Pm south(){
-    return this.south(1);
+  public Vector3Pm south(Environment env){
+    return this.south(env, 1);
   }
   @Signature
   public Vector3Pm south(Environment env, int step){
@@ -234,8 +234,8 @@ public class Vector3Pm extends BaseObject{
     return vpm;
   }
   @Signature
-  public Vector3Pm west(){
-    return this.west(1);
+  public Vector3Pm west(Environment env){
+    return this.west(env, 1);
   }
   @Signature
   public Vector3Pm west(Environment env, int step){
@@ -248,8 +248,8 @@ public class Vector3Pm extends BaseObject{
     return vpm;
   }
   @Signature
-  public Vector3Pm east(){
-    return this.east(1);
+  public Vector3Pm east(Environment env){
+    return this.east(env, 1);
   }
   @Signature
   public Vector3Pm east(Environment env, int step){
