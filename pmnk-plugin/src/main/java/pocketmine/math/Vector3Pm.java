@@ -405,16 +405,13 @@ public class Vector3Pm extends BaseObject{
   }
   @Signature
   public Vector3Pm withComponents(Environment env, int x){
-    if(x != null){
-      Vector3Pm vpm = new Vector3Pm(env, new Vector3(((double) x), this.instanceNK.getY(), this.instanceNK.getZ()));
-      try{
-        env.invokeMethod(vpm, "__construct");
-      }catch(Throwable e){
-        e.printStackTrace();
-      }
-      return vpm;
+    Vector3Pm vpm = new Vector3Pm(env, new Vector3(((double) x), this.instanceNK.getY(), this.instanceNK.getZ()));
+    try{
+      env.invokeMethod(vpm, "__construct");
+    }catch(Throwable e){
+      e.printStackTrace();
     }
-    return this;
+    return vpm;
   }
   @Signature
   public Vector3Pm withComponents(Environment env, float x){
