@@ -188,7 +188,7 @@ public class Vector2Pm extends BaseObject{
     }
     @Signature
     public float distance(Vector2Pm x){
-        return (float) this.instanceNK.distance(pos.getNK());
+        return (float) this.instanceNK.distance(x.getNK());
     }
     @Signature
     public float distanceSquared(float x){
@@ -233,28 +233,6 @@ public class Vector2Pm extends BaseObject{
                 return ServerPm.javaToMemory(this.instanceNK.getY());
         }
         return Memory.NULL;
-    }
-    @Signature
-    public void __set(String name, int val){
-        switch(name){
-            case "x":
-                this.instanceNK.x = (double) val;
-                break;
-            case "y":
-                this.instanceNK.y = (double) val;
-                break;
-        }
-    }
-    @Signature
-    public void __set(String name, float val){
-        switch(name){
-            case "x":
-                this.instanceNK.x = (double) val;
-                break;
-            case "y":
-                this.instanceNK.y = (double) val;
-                break;
-        }
     }
     @Ignore
     public Vector2 getNK(){
