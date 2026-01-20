@@ -319,7 +319,6 @@ public class Vector3Pm extends BaseObject{
   public float maxPlainDistance(Vector3Pm x, float z){
     return this.maxPlainDistance(x);
   }
-  /*
   @Signature
   public float maxPlainDistance(Vector2Pm x){
     return (float) this.instanceNK.maxPlainDistance(x.getNK());
@@ -328,7 +327,6 @@ public class Vector3Pm extends BaseObject{
   public float maxPlainDistance(Vector2Pm x, float z){
     return this.maxPlainDistance(x);
   }
-  */
   @Signature
   public float length(){
     return (float) this.instanceNK.length();
