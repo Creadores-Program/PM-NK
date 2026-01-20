@@ -2,6 +2,7 @@ package pocketmine.level;
 import java.util.Arrays;
 import pocketmine.math.Vector3Pm;
 import pocketmine.ServerPm;
+import cn.nukkit.level.Position;
 import php.runtime.env.Environment;
 import php.runtime.reflection.ClassEntity;
 import php.runtime.Memory;
