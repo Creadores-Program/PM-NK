@@ -37,11 +37,11 @@ public class Vector2Pm extends BaseObject{
     }
     @Signature
     public void __construct(int x, int y){
-        this.instanceNK = new Vector3(((double) x), ((double) y));
+        this.instanceNK = new Vector2(((double) x), ((double) y));
     }
     @Signature
     public void __construct(float x, float y){
-        this.instanceNK = new Vector3(((double) x), ((double) y));
+        this.instanceNK = new Vector2(((double) x), ((double) y));
     }
     @Signature
     public float getX(){
@@ -217,7 +217,7 @@ public class Vector2Pm extends BaseObject{
         return vpm;
     }
     @Signature
-    public float dot(Vector3Pm v){
+    public float dot(Vector2Pm v){
         return (float) this.instanceNK.dot(v.getNK());
     }
     @Signature
