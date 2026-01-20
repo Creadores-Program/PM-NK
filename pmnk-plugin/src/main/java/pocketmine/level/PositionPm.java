@@ -14,7 +14,7 @@ import static php.runtime.annotation.Reflection.*;
 public class PositionPm extends Vector3Pm{
     private Position instanceNK;
     public PositionPm(Environment env, Position instanceNK){
-        super(env);
+        super(env, instanceNK);
         this.instanceNK = instanceNK;
     }
     public PositionPm(Environment env, ClassEntity clazz){
