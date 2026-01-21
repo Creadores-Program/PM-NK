@@ -99,8 +99,9 @@ public class PositionPm extends Vector3Pm{
         return super.__get(name);
     }
     */
+    @Override
     @Ignore
-    public PositionPm getNK(){
+    public Position getNK(){
         return this.instanceNK;
     }
 }
