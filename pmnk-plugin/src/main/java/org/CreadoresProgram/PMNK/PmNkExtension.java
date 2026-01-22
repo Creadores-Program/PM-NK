@@ -8,6 +8,8 @@ import cn.nukkit.utils.TextFormat;
 import pocketmine.ServerPm;
 import pocketmine.utils.MainLoggerPm;
 import pocketmine.math.*;
+import pocketmine.utils.*;
+import pocketmine.level.*;
 public class PmNkExtension extends Extension{
   @Override
   public Status getStatus() {
@@ -15,6 +17,6 @@ public class PmNkExtension extends Extension{
   }
   @Override
   public void onRegister(CompileScope scope) {
-    registerClass(scope, ServerPm.class, MainLoggerPm.class, TextFormat.class, Vector3Pm.class, Vector2Pm.class);
+    registerClass(scope, ServerPm.class, MainLoggerPm.class, TextFormat.class, Vector3Pm.class, Vector2Pm.class, PositionPm.class, AssumptionFailedError.class);
   }
 }
