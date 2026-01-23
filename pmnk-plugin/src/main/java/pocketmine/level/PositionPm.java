@@ -86,7 +86,7 @@ public class PositionPm extends Vector3Pm{
     }
     */
     @Signature
-    public PositionPm asPosition(Environments env){
+    public PositionPm asPosition(Environment env){
         PositionPm posn = new PositionPm(env, this.instanceNK.clone());
         try{
             env.invokeMethod(posn, "__construct");
