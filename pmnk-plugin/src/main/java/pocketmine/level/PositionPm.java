@@ -159,7 +159,7 @@ public class PositionPm extends Vector3Pm{
     @Signature
     public boolean equals(Vector3Pm v){
         if(v instanceof PositionPm){
-            return super.equals(v) && this.level.equals(v.getLevel());
+            return super.equals(v) && this.level.equals(((PositionPm) v).getLevel());
         }
         return super.equals(v);
     }
