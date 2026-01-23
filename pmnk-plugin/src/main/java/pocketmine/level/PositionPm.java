@@ -1,7 +1,7 @@
 package pocketmine.level;
 import java.util.Arrays;
 import pocketmine.math.Vector3Pm;
-import pocketmine.utils.AssumptionFailedError;
+import pocketmine.utils.AssumptionFailedErrorPm;
 import pocketmine.ServerPm;
 import cn.nukkit.level.Position;
 import php.runtime.env.Environment;
@@ -86,7 +86,7 @@ public class PositionPm extends Vector3Pm{
     }
     */
     @Signature
-    public PositionPm asPosition(){
+    public PositionPm asPosition(Environments env){
         PositionPm posn = new PositionPm(env, this.instanceNK.clone());
         try{
             env.invokeMethod(posn, "__construct");
@@ -102,7 +102,7 @@ public class PositionPm extends Vector3Pm{
     @Signature
     public Memory getLevelNonNull(Environment env){
         if(this.level == null){
-            AssumptionFailedError er = new AssumptionFailedError(env);
+            AssumptionFailedErrorPm er = new AssumptionFailedErrorPm(env);
             try{
                 env.invokeMethod(er, "__construct", StringMemory.valueOf("Position world is null"));
             }catch(Throwable e){
@@ -113,7 +113,7 @@ public class PositionPm extends Vector3Pm{
         return this.level;
     }
     @Signature
-    public PositionPm setLevel(){
+    public PositionPm setLevel(Environment env){
         InvalidArgumentException er = new InvalidArgumentException(env);
         try{
             env.invokeMethod(er, "__construct", StringMemory.valueOf("Position world is null"));
@@ -148,7 +148,7 @@ public class PositionPm extends Vector3Pm{
         if(this.isValid()){
             return null;
         }
-        return super.getSide(side, step);
+        return ((PositionPm) super.getSide(side, step));
     }
     @Override
     @Signature
