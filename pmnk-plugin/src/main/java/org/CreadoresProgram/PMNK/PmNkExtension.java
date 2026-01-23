@@ -17,6 +17,6 @@ public class PmNkExtension extends Extension{
   }
   @Override
   public void onRegister(CompileScope scope) {
-    registerClass(scope, ServerPm.class, MainLoggerPm.class, TextFormat.class, Vector3Pm.class, Vector2Pm.class, PositionPm.class, AssumptionFailedError.class);
+    registerClass(scope, ServerPm.class, MainLoggerPm.class, TextFormat.class, Vector3Pm.class, Vector2Pm.class, PositionPm.class, AssumptionFailedErrorPm.class);
   }
 }
