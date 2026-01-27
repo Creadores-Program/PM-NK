@@ -171,6 +171,7 @@ public class PositionPm extends Vector3Pm{
             this.level = (Memory) new php.runtime.memory.ObjectMemory(val);
         }
     }
+    */
     @Signature
     public Memory __get(String name){
         if(name.equals("level")){
@@ -178,7 +179,6 @@ public class PositionPm extends Vector3Pm{
         }
         return super.__get(name);
     }
-    */
     @Override
     @Ignore
     public Position getNK(){
