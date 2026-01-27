@@ -14,7 +14,7 @@ import static php.runtime.annotation.Reflection.*;
 @Name("Location")
 @Namespace("pocketmine\\level")
 public class LocationPm extends PositionPm{
-    private Location instanceNK:
+    private Location instanceNK;
     public LocationPm(Environment env, Location instanceNK){
         super(env, instanceNK);
         this.instanceNK = instanceNK;
