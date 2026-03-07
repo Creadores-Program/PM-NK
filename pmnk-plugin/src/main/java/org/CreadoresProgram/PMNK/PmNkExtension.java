@@ -10,6 +10,7 @@ import pocketmine.utils.MainLoggerPm;
 import pocketmine.math.*;
 import pocketmine.utils.*;
 import pocketmine.level.*;
+import pocketmine.plugin.*;
 public class PmNkExtension extends Extension{
   @Override
   public Status getStatus() {
@@ -17,6 +18,6 @@ public class PmNkExtension extends Extension{
   }
   @Override
   public void onRegister(CompileScope scope) {
-    registerClass(scope, ServerPm.class, MainLoggerPm.class, TextFormat.class, Vector3Pm.class, Vector2Pm.class, PositionPm.class, AssumptionFailedErrorPm.class, LocationPm.class);
+    registerClass(scope, ServerPm.class, MainLoggerPm.class, TextFormat.class, Vector3Pm.class, Vector2Pm.class, PositionPm.class, AssumptionFailedErrorPm.class, LocationPm.class, PluginPm.class, PluginDescriptionPm.class);
   }
 }
