@@ -3,7 +3,7 @@ package pocketmine.plugin;
 import java.io.File;
 import java.io.InputStream;
 import pocketmine.ServerPm;
-import pocketmine.utils.ConfigPm;
+//import pocketmine.utils.ConfigPm;
 import php.runtime.env.Environment;
 import static php.runtime.annotation.Reflection.*;
 
@@ -11,7 +11,7 @@ import static php.runtime.annotation.Reflection.*;
 @Namespace("pocketmine\\plugin")
 public interface PluginPm /*extends CommandExecutorPm*/{
     @Signature
-    void __construct(Environment env, PluginLoaderPm loader, ServerPm server, PluginDescriptionPm description, File dataFolder, File file);
+    void __construct(Environment env, /*PluginLoaderPm loader, */ServerPm server, PluginDescriptionPm description, File dataFolder, File file);
 
     @Signature
     void onLoad();

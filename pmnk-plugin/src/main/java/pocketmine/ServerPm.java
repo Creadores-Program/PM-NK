@@ -624,7 +624,7 @@ public class ServerPm extends BaseObject{
     throw ex;
   }
   @Ignore
-  public Server getnk(){
+  public Server getNK(){
     return instanceNK;
   }
   @Ignore
