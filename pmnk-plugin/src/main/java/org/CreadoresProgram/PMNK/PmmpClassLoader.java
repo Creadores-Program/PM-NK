@@ -10,8 +10,8 @@ import java.util.Map;
 
 import static php.runtime.annotation.Reflection.*;
 
-@Name("PmmpClassLoader");
-@Namespace("cn\\nukkit\\pmmp");
+@Name("PmmpClassLoader")
+@Namespace("cn\\nukkit\\pmmp")
 public class PmmpClassLoader extends WrapClassLoader {
   private Map<String, byte[]> clazzPhp;
   public PmmpClassLoader(Environment env, ClassEntity clazz) {
