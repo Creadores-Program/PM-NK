@@ -1,9 +1,11 @@
 package org.CreadoresProgram.PMNK;
 
 import php.runtime.env.Environment;
+import php.runtime.env.Context;
 import php.runtime.ext.core.classes.WrapClassLoader;
 import php.runtime.reflection.ClassEntity;
 import php.runtime.reflection.ModuleEntity;
+import php.runtime.common.AbstractCompiler;
 
 import java.io.ByteArrayInputStream;
 import java.util.Map;
@@ -17,8 +19,7 @@ public class PmmpClassLoader extends WrapClassLoader {
   public PmmpClassLoader(Environment env, ClassEntity clazz) {
       super(env, clazz);
   }
-  public PmmpClassLoader(Environment env, Map<String, byte[]> clazzPhp){
-      super(env);
+  public void setClassMap(Map<String, byte[]> clazzPhp){
       this.clazzPhp = clazzPhp;
   }
   @Signature
