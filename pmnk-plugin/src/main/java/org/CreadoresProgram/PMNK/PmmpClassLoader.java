@@ -33,16 +33,16 @@ public class PmmpClassLoader extends WrapClassLoader {
           file = file.substring(1);
       }
       String fileSrc = "src/"+file;
-      if (classSourceMap == null) {
+      if (clazzPhp == null) {
           System.out.println("Map not registred");
           return false;
       }
-      byte[] sourceCode = classSourceMap.get(className);
+      byte[] sourceCode = clazzPhp.get(className);
       if (sourceCode == null) {
-          sourceCode = classSourceMap.get(file);
+          sourceCode = clazzPhp.get(file);
       }
       if (sourceCode == null) {
-          sourceCode = classSourceMap.get(fileSrc);
+          sourceCode = clazzPhp.get(fileSrc);
       }
       if (sourceCode != null) {
           try {
