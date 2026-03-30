@@ -19,6 +19,7 @@ import java.nio.charset.StandardCharsets;
 import php.runtime.env.CompileScope;
 import php.runtime.env.Environment;
 import php.runtime.env.Context;
+import php.runtime.ext.SPLExtension;
 import php.runtime.launcher.Launcher;
 import php.runtime.reflection.ModuleEntity;
 import php.runtime.reflection.ClassEntity;
@@ -42,6 +43,7 @@ public class PMPluginLoader implements PluginLoader{
     this.plugin = Main.getInstance();
     this.scope = new CompileScope();
     this.scope.setNativeClassLoader(plugin.getClass().getClassLoader());
+    this.scope.registerExtension(new SPLExtension());
     this.scope.registerExtension(new JsonExtension());
     this.scope.registerExtension(new PmNkExtension());
     this.env = new Environment(scope, System.out);
@@ -57,20 +59,18 @@ public class PMPluginLoader implements PluginLoader{
   }
   private void loadPMAPI(){
     this.plugin.getLogger().debug("§eLoading polyfills for Pocketmine-MP...");
-    this.eval("<?php\nclass RuntimeException extends Exception{}", "RuntimeException.php");
     this.plugin.saveResource("pocketmine-api/PocketMine-MP.phar");
     File pocketmineF = new File(plugin.getDataFolder() + "/pocketmine-api/PocketMine-MP.phar");
     Map<String, byte[]> pmDir = PharManager.readPhar(pocketmineF);
     this.plugin.getLogger().debug("§eLoading pocketmine/Pocketmine.php...");
     this.eval(pmDir.get("pocketmine/Pocketmine.php"), "pocketmine/Pocketmine.php");
-    for (Map.Entry<String, byte[]> entry : pmDir.entrySet()) {
-      String fileName = entry.getKey();
-      if(fileName.equals("pocketmine/VersionInfo.php") || fileName.equals("pocketmine/Pocketmine.php")){
-        continue;
-      }
-      this.plugin.getLogger().debug("§eLoading "+fileName+"...");
-      this.eval(entry.getValue(), fileName);
+    ClassEntity loaderEntity = this.env.fetchClass("php\\lang\\ClassLoader", true);
+    if (loaderEntity == null) {
+        throw new RuntimeException("ClassLoader class not found");
     }
+    PmmpClassLoader pmmpLoader = new PmmpClassLoader(this.env, loaderEntity);
+    pmmpLoader.setClassMap(pmDir);
+    pmmpLoader.register(this.env, true);
     this.plugin.getLogger().debug("§eLoading pocketmine/VersionInfo.php...");
     String gitcomm = "null";
     if(Nukkit.GIT_INFO != null){
