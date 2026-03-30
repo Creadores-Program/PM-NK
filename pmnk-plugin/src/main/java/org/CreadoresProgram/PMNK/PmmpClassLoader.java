@@ -19,6 +19,8 @@ public class PmmpClassLoader extends WrapClassLoader {
   public PmmpClassLoader(Environment env, ClassEntity clazz) {
       super(env, clazz);
   }
+
+  @Ignore
   public void setClassMap(Map<String, byte[]> clazzPhp){
       this.clazzPhp = clazzPhp;
   }
